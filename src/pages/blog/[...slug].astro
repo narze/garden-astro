@@ -6,11 +6,8 @@ export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => {
     return data.draft !== true;
   });
-	const secondBrainPosts = await getCollection('second-brain', ({ data }) => {
-    return data.draft !== true;
-  });
 
-	return [...posts, ...secondBrainPosts].map((post) => ({
+	return posts.map((post) => ({
 		params: { slug: post.slug },
 		props: post,
 	}));

@@ -3,19 +3,18 @@ import { CollectionEntry, getCollection } from 'astro:content';
 import SecondBrainPost from '../layouts/SecondBrainPost.astro';
 
 export async function getStaticPaths() {
-	const posts = await getCollection('blog', ({ data }) => {
-    return data.draft !== true;
-  });
 	const secondBrainPosts = await getCollection('second-brain', ({ data }) => {
     return data.draft !== true;
   });
 
-	return [...posts, ...secondBrainPosts].map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+	return secondBrainPosts.map((post) => {
+    return {
+      params: { slug: post.slug.split("/").at(-1) },
+      props: post,
+	  }
+  });
 }
-type Props = CollectionEntry<'blog'>;
+type Props = CollectionEntry<'second-brain'>;
 
 const post = Astro.props;
 const { Content } = await post.render();

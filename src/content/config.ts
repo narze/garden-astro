@@ -26,7 +26,7 @@ const blog = defineCollection({
 // draft: true
 const secondBrain = defineCollection({
   schema: z.object({
-    title: z.string(),
+    title: z.string().optional(),
     date: z
       .string()
       .or(z.date())
@@ -41,4 +41,4 @@ const secondBrain = defineCollection({
   }),
 })
 
-export const collections = { blog, secondBrain }
+export const collections = { blog, "second-brain": secondBrain }
