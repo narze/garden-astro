@@ -17,7 +17,7 @@ emitter.on("info", (info: any) => {
 
 emitter.clone("./tmp/second-brain").then(async () => {
   // Cleanup src/content/second-brain
-  rimrafSync("./src/content/second-brain")
+  rimrafSync("./src/content/second-brain/*", { glob: true })
 
   // For each file in the directory, we need to:
   // 1. Filter out non-markdown files
