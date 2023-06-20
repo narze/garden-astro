@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+type Props = CollectionEntry<'second-brain'>['data'];
+
+const { title, date, created, draft } = Astro.props;
+---
+
+<html lang="en">
+	<head>
+		<BaseHead title={title} description={"..."} />
+		<style>
+			.title {
+				font-size: 2em;
+				margin: 0.25em 0 0;
+			}
+			hr {
+				border-top: 1px solid #ddd;
+				margin: 1rem 0;
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head>
+
+	<body>
+		<Header />
+		<main>
+			<article>
+				<h1 class="title">{title}</h1>
+				<hr />
+				<slot />
+			</article>
+		</main>
+		<Footer />
+	</body>
+</html>

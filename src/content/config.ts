@@ -19,4 +19,26 @@ const blog = defineCollection({
   }),
 })
 
-export const collections = { blog }
+// Format from narze/second-brain
+// title: "{{title}}"
+// created: {{date:YYYY-MM-DD}} {{time:HH:mm}}
+// date: {{date:YYYY-MM-DD}}
+// draft: true
+const secondBrain = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    date: z
+      .string()
+      .or(z.date())
+      .transform((val) => new Date(val))
+      .optional(),
+    created: z
+      .string()
+      .or(z.date())
+      .transform((val) => new Date(val))
+      .optional(),
+    draft: z.boolean().optional(),
+  }),
+})
+
+export const collections = { blog, secondBrain }
