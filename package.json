@@ -17,6 +17,7 @@
   },
   "devDependencies": {
     "@types/degit": "^2.8.3",
+    "chokidar": "^3.5.3",
     "degit": "^2.8.4",
     "glob": "^10.2.7",
     "gray-matter": "^4.0.3",

@@ -38,7 +38,7 @@ const secondBrainPosts = (await getCollection('second-brain'))
 					{
 						secondBrainPosts.map((post) => (
 							<li>
-								<a href={`/${post.slug.split("/").at(-1)}/`}>{post.data.title || post.id}</a>
+								<a href={`/${post.slug}/`}>{post.data.title || post.id}</a>
 							</li>
 						))
 					}

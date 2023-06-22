@@ -9,7 +9,7 @@ export async function getStaticPaths() {
 
 	return secondBrainPosts.map((post) => {
     return {
-      params: { slug: post.slug.split("/").at(-1) },
+      params: { slug: post.slug },
       props: post,
 	  }
   });

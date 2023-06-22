@@ -1,0 +1,52 @@
+import chokidar from "chokidar"
+import fs, { copyFileSync } from "node:fs"
+import path from "node:path"
+import { rimrafSync } from "rimraf"
+
+const obsidianPath = resolveHome(
+  `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
+)
+
+function resolveHome(filepath: string): string {
+  if (filepath[0] === "~") {
+    return path.join(process.env.HOME!, filepath.slice(1))
+  }
+
+  return filepath
+}
+
+chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
+  // Ignore files that starts with . or is not a markdown file
+  if (filePath.includes("/.") || !filePath.endsWith(".md")) {
+    return
+  }
+
+  // console.log(filePath, stats)
+
+  // Copy file to src/content/second-brain/local/**
+  const destinationPath = `./src/content/second-brain/local/${filePath.replace(
+    obsidianPath,
+    ""
+  )}`
+  const destinationDir = path.dirname(destinationPath)
+
+  // Create the destination directory if it doesn't exist
+  if (!fs.existsSync(destinationDir)) {
+    fs.mkdirSync(destinationDir, { recursive: true })
+  }
+
+  copyFileSync(filePath, destinationPath)
+
+  console.log("Copied", filePath, "to", destinationPath)
+})
+
+// Cleanup src/content/second-brain/local on exit
+process.on("SIGINT", () => {
+  console.log("Cleaning up src/content/second-brain/local/")
+
+  rimrafSync("./src/content/second-brain/local/*", { glob: true })
+
+  process.exit()
+})
+
+console.log(`Watching ${obsidianPath} for changes`)
