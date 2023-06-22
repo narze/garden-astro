@@ -46,8 +46,8 @@ emitter.clone("./tmp/second-brain").then(async () => {
         const file = matter.read(path)
 
         if (
-          file?.data?.date ||
-          file?.data?.title ||
+          // file?.data?.date ||
+          // file?.data?.title ||
           String(file?.data?.publish) === "true"
         ) {
           const destinationPath = `./src/content/second-brain/${path
