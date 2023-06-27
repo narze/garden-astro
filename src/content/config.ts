@@ -26,17 +26,15 @@ const blog = defineCollection({
 // draft: true
 const secondBrain = defineCollection({
   schema: z.object({
-    title: z.string().optional(),
+    title: z.string(),
     date: z
       .string()
       .or(z.date())
-      .transform((val) => new Date(val))
-      .optional(),
-    created: z
+      .transform((val) => new Date(val)),
+    updated: z
       .string()
-      .or(z.date())
-      .transform((val) => new Date(val))
-      .optional(),
+      .optional()
+      .transform((str) => (str ? new Date(str) : undefined)),
     draft: z.boolean().optional(),
   }),
 })

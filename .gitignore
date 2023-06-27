@@ -20,4 +20,4 @@ pnpm-debug.log*
 .DS_Store
 
 /tmp
-/src/content/second-brain/local
+/src/content/second-brain
