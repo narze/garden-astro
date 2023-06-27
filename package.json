@@ -3,7 +3,9 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
-    "dev": "astro dev",
+    "dev": "run-p dev:astro dev:garden",
+    "dev:astro": "astro dev",
+    "dev:garden": "tsx dev.ts",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
@@ -21,6 +23,7 @@
     "degit": "^2.8.4",
     "glob": "^10.2.7",
     "gray-matter": "^4.0.3",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^5.0.1",
     "tsx": "^3.12.7"
   }

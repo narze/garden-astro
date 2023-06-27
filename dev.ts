@@ -38,6 +38,19 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
   copyFileSync(filePath, destinationPath)
 
   console.log("Copied", filePath, "to", destinationPath)
+
+  // Edit file and add local- to slug in the frontmatter to prevent collision
+  const fileContent = fs.readFileSync(destinationPath, {
+    encoding: "utf-8",
+  })
+  const fileContentWithLocal = fileContent.replace(
+    /(?<=^slug: )(.*)/gm,
+    "local-$1"
+  )
+
+  fs.writeFileSync(destinationPath, fileContentWithLocal, {
+    encoding: "utf-8",
+  })
 })
 
 // Cleanup src/content/second-brain/local on exit
