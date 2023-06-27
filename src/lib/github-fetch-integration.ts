@@ -31,7 +31,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
         // 2. Read the file frontmatter
         // 3. If it's has publish: true
         // Then copy those files to the src/content/second-brain directory
-        globSync("./tmp/second-brain/**/*.md")
+        globSync("./tmp/second-brain/**/*.{md,mdx,svx}")
           .filter((path) => {
             // Excludes these files:
             // - Includes #

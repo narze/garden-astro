@@ -16,8 +16,17 @@ function resolveHome(filepath: string): string {
 }
 
 chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
-  // Ignore files that starts with . or is not a markdown file
-  if (filePath.includes("/.") || !filePath.endsWith(".md")) {
+  // Ignore files that starts with .
+  if (filePath.includes("/.")) {
+    return
+  }
+
+  // Ignore non md/mdx/sdx files
+  if (
+    !filePath.endsWith(".md") &&
+    !filePath.endsWith(".mdx") &&
+    !filePath.endsWith(".sdx")
+  ) {
     return
   }
 
