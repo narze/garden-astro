@@ -30,6 +30,11 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
     return
   }
 
+  // Ignore Untitled files, they are probably temporary
+  if (filePath.includes("/Untitled")) {
+    return
+  }
+
   // console.log(filePath, stats)
 
   // Copy file to src/content/second-brain/local/**
