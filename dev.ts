@@ -2,6 +2,8 @@ import chokidar from "chokidar"
 import fs, { copyFileSync } from "node:fs"
 import path from "node:path"
 import { rimrafSync } from "rimraf"
+import { remark } from "remark"
+import { visit } from "unist-util-visit"
 
 const obsidianPath = resolveHome(
   `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
@@ -13,6 +15,25 @@ function resolveHome(filepath: string): string {
   }
 
   return filepath
+}
+
+const extractImageSources = (filePath) => {
+  const markdown = fs.readFileSync(filePath, "utf-8")
+
+  const imageSources = []
+
+  const processor = remark().use(() => (tree) => {
+    visit(tree, "image", (node) => {
+      // console.log({ node })
+      const imageUrl = decodeURI(node.url)
+
+      imageSources.push(imageUrl)
+    })
+  })
+
+  processor.processSync(markdown)
+
+  return imageSources
 }
 
 chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
@@ -64,6 +85,26 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
 
   fs.writeFileSync(destinationPath, fileContentWithLocal, {
     encoding: "utf-8",
+  })
+
+  // Parse the file with remark, and then get image paths
+  // Copy those images to public/images/**
+  const imageSources = extractImageSources(filePath)
+
+  imageSources.forEach((imageSource) => {
+    const srcPath = `${obsidianPath}/${imageSource}`
+
+    const destinationPath = `./public/images/${imageSource}`
+    const destinationDir = path.dirname(destinationPath)
+
+    // Create the destination directory if it doesn't exist
+    if (!fs.existsSync(destinationDir)) {
+      fs.mkdirSync(destinationDir, { recursive: true })
+    }
+
+    copyFileSync(srcPath, destinationPath)
+
+    console.log("Copied", srcPath, "to", destinationPath)
   })
 })
 
