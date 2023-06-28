@@ -5,6 +5,7 @@ import { rimrafSync } from "rimraf"
 import fs, { copyFileSync } from "node:fs"
 import nodePath from "node:path"
 import matter from "gray-matter"
+import { extractImageSources } from "./extract-image-sources.ts"
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -83,6 +84,33 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
                 }
 
                 copyFileSync(path, destinationPath)
+
+                // Parse the file with remark, and then get image paths
+                // Copy those images to public/images/**
+                const imageSources = extractImageSources(path)
+                console.log({ imageSources })
+
+                imageSources.forEach((imageSource) => {
+                  const srcPath = `./tmp/second-brain/${imageSource}`
+
+                  const destinationPath = `./public/images/${imageSource}`
+                  const destinationDir = nodePath.dirname(destinationPath)
+
+                  // Skip if file not exist
+                  if (!fs.existsSync(srcPath)) {
+                    console.log("File", srcPath, "not found, skipping")
+                    return
+                  }
+
+                  // Create the destination directory if it doesn't exist
+                  if (!fs.existsSync(destinationDir)) {
+                    fs.mkdirSync(destinationDir, { recursive: true })
+                  }
+
+                  copyFileSync(srcPath, destinationPath)
+
+                  console.log("Copied", srcPath, "to", destinationPath)
+                })
               }
             } catch (e) {
               console.error(e)

@@ -2,8 +2,7 @@ import chokidar from "chokidar"
 import fs, { copyFileSync } from "node:fs"
 import path from "node:path"
 import { rimrafSync } from "rimraf"
-import { remark } from "remark"
-import { visit } from "unist-util-visit"
+import { extractImageSources } from "./src/lib/extract-image-sources.ts"
 
 const obsidianPath = resolveHome(
   `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
@@ -15,25 +14,6 @@ function resolveHome(filepath: string): string {
   }
 
   return filepath
-}
-
-const extractImageSources = (filePath) => {
-  const markdown = fs.readFileSync(filePath, "utf-8")
-
-  const imageSources = []
-
-  const processor = remark().use(() => (tree) => {
-    visit(tree, "image", (node) => {
-      // console.log({ node })
-      const imageUrl = decodeURI(node.url)
-
-      imageSources.push(imageUrl)
-    })
-  })
-
-  processor.processSync(markdown)
-
-  return imageSources
 }
 
 chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
