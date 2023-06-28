@@ -26,6 +26,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
 
         rimrafSync("./src/content/second-brain/*", { glob: true })
 
+        const slugs = []
         // For each file in the directory, we need to:
         // 1. Filter out non-markdown files
         // 2. Read the file frontmatter
@@ -62,6 +63,17 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
                   .slice(2)
                   .join("/")}`
                 const destinationDir = nodePath.dirname(destinationPath)
+
+                // Prevent copying if the slug already exists
+                if (slugs.includes(file.data.slug)) {
+                  console.log(
+                    "Slug",
+                    file.data.slug,
+                    "already exists, skipping"
+                  )
+                  return
+                }
+                slugs.push(file.data.slug)
 
                 console.log("Copy", path, "to", destinationPath)
 
