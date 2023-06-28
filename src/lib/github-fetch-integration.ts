@@ -25,6 +25,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
 
         await emitter.clone("./tmp/second-brain")
 
+        rimrafSync("./public/images/*", { glob: true })
         rimrafSync("./src/content/second-brain/*", { glob: true })
 
         const slugs = []
