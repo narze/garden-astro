@@ -1,3 +1,4 @@
+import fs from "node:fs"
 import { remark } from "remark"
 import { visit } from "unist-util-visit"
 
