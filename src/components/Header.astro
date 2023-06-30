@@ -4,20 +4,22 @@ import { DEV, SITE_TITLE } from '../consts';
 ---
 
 <header>
-	<h2>
-		{SITE_TITLE}
-	</h2>
-	<nav>
-		<HeaderLink href="/">Home</HeaderLink>
-    {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
-		<HeaderLink href="/second-brain">Entries</HeaderLink>
-	</nav>
+  <div class="container">
+    <h2>
+      {SITE_TITLE}
+    </h2>
+    <nav>
+      <HeaderLink href="/">Home</HeaderLink>
+      {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
+      <HeaderLink href="/second-brain">Entries</HeaderLink>
+    </nav>
+  </div>
 </header>
-<style>
+<!-- <style>
 	header {
 		margin: 0em 0 2em;
 	}
 	h2 {
 		margin: 0.5em 0;
 	}
-</style>
+</style> -->

@@ -28,10 +28,10 @@ const { title, date, draft, updated } = Astro.props;
 		</style>
 	</head>
 
-	<body>
+	<body class="flex flex-col h-screen">
 		<Header />
 		<main>
-			<article>
+			<article class="container">
 				<!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
 				<h1 class="title">{title}</h1>
 				<FormattedDate date={date} />
