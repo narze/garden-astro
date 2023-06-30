@@ -1,7 +1,21 @@
 a:hover {
   text-decoration: underline;
 }
-
+code {
+  padding: 2px 5px;
+}
+pre {
+  padding: 1rem;
+}
+pre > code {
+  all: unset;
+}
+section {
+  line-height: 1.5;
+}
+li {
+  @apply list-disc list-inside;
+}
 /*
   The CSS in this style tag is based off of Bear Blog's default CSS.
   https://github.com/HermanMartinus/bearblog/blob/297026a877bc2ab2b3bdfbd6b9f7961c350917dd/templates/styles/blog/default.css
