@@ -10,11 +10,10 @@ pre {
 pre > code {
   all: unset;
 }
-section {
-  line-height: 1.5;
-}
-li {
-  @apply list-disc list-inside;
+img {
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 /*
   The CSS in this style tag is based off of Bear Blog's default CSS.
