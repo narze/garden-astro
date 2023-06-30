@@ -1,41 +1,27 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection } from "astro:content";
 
-import BaseHead from '../components/BaseHead.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
-import FormattedDate from '../components/FormattedDate.astro';
+import Layout from "../layouts/Layout.astro";
+import FormattedDate from "../components/FormattedDate.astro";
 
-const posts = (await getCollection('second-brain', ({ data }) => {
-  return (data.draft !== true)
-})).sort(
-	(a, b) => b.data.date.valueOf() - a.data.date.valueOf()
-);
+const posts = (
+  await getCollection("second-brain", ({ data }) => {
+    return data.draft !== true;
+  })
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body class="flex flex-col h-[100svh]">
-		<Header title={SITE_TITLE} />
-		<main>
-      <section>
-        <h2>Recent Entries</h2>
-				<ul>
-					{
-						posts.map((post) => (
-							<li>
-								<FormattedDate date={post.data.date!} />
-								<a href={`/${post.slug}/`}>{post.data.title}</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Layout>
+  <section class="container">
+    <h2 class="text-xl">Recent Entries</h2>
+    <ul class="list-disc ml-4">
+      {
+        posts.map((post) => (
+          <li >
+            <a href={`/${post.slug}/`}><FormattedDate date={post.data.date!} /> {post.data.title}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

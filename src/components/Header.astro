@@ -1,25 +1,19 @@
 ---
 import HeaderLink from './HeaderLink.astro';
 import { DEV, SITE_TITLE } from '../consts';
+import ThemeSwitch from './ThemeSwitch.svelte';
+
 ---
 
 <header>
-  <div class="container">
-    <h2>
-      {SITE_TITLE}
+  <div class="container flex justify-between my-4 items-center text-lg">
+    <h2 class="font-bold">
+      <a href="/">{SITE_TITLE}</a>
     </h2>
-    <nav>
-      <HeaderLink href="/">Home</HeaderLink>
+    <nav class="flex gap-2 my-2">
       {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
       <HeaderLink href="/second-brain">Entries</HeaderLink>
+      <ThemeSwitch client:only />
     </nav>
   </div>
 </header>
-<!-- <style>
-	header {
-		margin: 0em 0 2em;
-	}
-	h2 {
-		margin: 0.5em 0;
-	}
-</style> -->

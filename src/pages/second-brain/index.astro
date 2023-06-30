@@ -4,13 +4,13 @@ import BaseHead from '../../components/BaseHead.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../../consts';
+import Layout from '../../layouts/Layout.astro';
 
 const secondBrainPosts = (await getCollection('second-brain'))
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-	<head>
+<Layout>
+	<!-- <head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			ul {
@@ -29,22 +29,16 @@ const secondBrainPosts = (await getCollection('second-brain'))
 				color: #8e32dc;
 			}
 		</style>
-	</head>
-	<body>
-		<Header />
-		<main>
-			<section>
-				<ul>
-					{
-						secondBrainPosts.map((post) => (
-							<li>
-								<a href={`/${post.slug}/`}>{post.data.title || post.id}</a>
-							</li>
-						))
-					}
-				</ul>
-			</section>
-		</main>
-		<Footer />
-	</body>
-</html>
+	</head> -->
+  <section class="container">
+    <ul>
+      {
+        secondBrainPosts.map((post) => (
+          <li>
+            <a href={`/${post.slug}/`}>{post.data.title || post.id}</a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+</Layout>

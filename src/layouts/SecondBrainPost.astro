@@ -4,14 +4,15 @@ import BaseHead from '../components/BaseHead.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import FormattedDate from '../components/FormattedDate.astro';
+import Layout from './Layout.astro';
 
 type Props = CollectionEntry<'second-brain'>['data'];
 
 const { title, date, draft, updated } = Astro.props;
 ---
 
-<html lang="en">
-	<head>
+<Layout>
+	<!-- <head>
 		<BaseHead title={title} description={""} />
 		<style>
 			.title {
@@ -26,26 +27,20 @@ const { title, date, draft, updated } = Astro.props;
 				font-style: italic;
 			}
 		</style>
-	</head>
+	</head> -->
 
-	<body class="flex flex-col h-screen">
-		<Header />
-		<main>
-			<article class="container">
-				<!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
-				<h1 class="title">{title}</h1>
-				<FormattedDate date={date} />
-				{
-					updated && (
-						<div class="last-updated-on">
-							Last updated <FormattedDate date={updated} />
-						</div>
-					)
-				}
-				<!-- <hr /> -->
-				<slot />
-			</article>
-		</main>
-		<Footer />
-	</body>
-</html>
+  <article class="container">
+    <!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
+    <h1 class="title">{title}</h1>
+    <FormattedDate date={date} />
+    {
+      updated && (
+        <div class="last-updated-on">
+          Last updated <FormattedDate date={updated} />
+        </div>
+      )
+    }
+    <!-- <hr /> -->
+    <slot />
+  </article>
+</Layout>
