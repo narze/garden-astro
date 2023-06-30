@@ -1,10 +1,11 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import SecondBrainPost from '../layouts/SecondBrainPost.astro';
+import { DEV } from '../consts';
 
 export async function getStaticPaths() {
 	const secondBrainPosts = await getCollection('second-brain', ({ data }) => {
-    return data.draft !== true;
+    return DEV ? true : (data.draft !== true)
   });
 
 	return secondBrainPosts.map((post) => {

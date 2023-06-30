@@ -1,10 +1,11 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
+import { DEV } from '../../consts';
 
 export async function getStaticPaths() {
 	const posts = await getCollection('blog', ({ data }) => {
-    return data.draft !== true;
+    return DEV ? true : (data.draft !== true)
   });
 
 	return posts.map((post) => ({
@@ -20,5 +21,6 @@ const { Content } = await post.render();
 
 <BlogPost {...post.data}>
 	<h1>{post.data.title}</h1>
+  {post.data.draft ? <p>Draft</p> : null}
 	<Content />
 </BlogPost>
