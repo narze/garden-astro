@@ -2,8 +2,13 @@
 const today = new Date()
 ---
 
-<footer>
-  &copy; {today.getFullYear()} narze. All rights reserved.
+<footer class="flex gap-2 justify-center">
+  <span>&copy; {today.getFullYear()} narze</span>
+  |
+  <span
+    ><a href="https://github.com/narze/garden-astro" target="_blank">Github</a
+    ></span
+  >
 </footer>
 <style>
   footer {
