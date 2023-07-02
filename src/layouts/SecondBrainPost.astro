@@ -1,14 +1,11 @@
 ---
 import type { CollectionEntry } from "astro:content"
-import BaseHead from "../components/BaseHead.astro"
-import Header from "../components/Header.astro"
-import Footer from "../components/Footer.astro"
 import FormattedDate from "../components/FormattedDate.astro"
 import Layout from "./Layout.astro"
 
 type Props = CollectionEntry<"second-brain">["data"]
 
-const { title, date, draft, updated } = Astro.props
+const { title, date, draft, updated, filepath } = Astro.props
 ---
 
 <Layout>
@@ -28,21 +25,38 @@ const { title, date, draft, updated } = Astro.props
 			}
 		</style>
 	</head> -->
-
   <article class="container">
     <div class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8">
       <!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
       <h1 class="title">{title} {draft ? "(Draft)" : null}</h1>
+
       <FormattedDate date={date} />
-      {
-        updated && (
-          <div class="last-updated-on">
-            Last updated <FormattedDate date={updated} />
-          </div>
-        )
-      }
-      <!-- <hr /> -->
-      <slot />
+      <small>
+        {
+          updated && (
+            <div class="last-updated-on">
+              Last updated <FormattedDate date={updated} />
+            </div>
+          )
+        }
+        <!-- <hr /> -->
+        <slot />
+      </small>
+    </div>
+
+    <!-- View Source -->
+    <div class="mt-8">
+      <a
+        href={`https://github.com/narze/second-brain/blob/main/${filepath.replace(
+          "src/content/second-brain/",
+          ""
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        View Source
+      </a>
     </div>
   </article>
 </Layout>

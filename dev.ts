@@ -5,6 +5,7 @@ import { rimrafSync } from "rimraf"
 
 import { extractImageSources } from "./src/lib/extract-image-sources"
 import { resolveLinks } from "./src/lib/resolve-links"
+import { addFilepath } from "./src/lib/add-filepath"
 
 const obsidianPath = resolveHome(
   `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
@@ -44,7 +45,7 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
   const destinationPath = `./src/content/second-brain/local/${filePath.replace(
     obsidianPath,
     ""
-  )}`
+  )}`.replaceAll("//", "/")
   const destinationDir = path.dirname(destinationPath)
 
   // Create the destination directory if it doesn't exist
@@ -90,6 +91,7 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
   })
 
   resolveLinks(destinationPath)
+  addFilepath(destinationPath)
 })
 
 // Cleanup src/content/second-brain/local on exit

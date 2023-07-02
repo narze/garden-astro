@@ -4,6 +4,7 @@ import sitemap from "@astrojs/sitemap"
 import githubFetchIntegration from "./src/lib/github-fetch-integration"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
+
 function prependImageSrcPlugin() {
   return (tree) => {
     function visit(node) {
@@ -20,7 +21,7 @@ function prependImageSrcPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://example.com",
+  site: "https://garden-astro.vercel.app",
   integrations: [
     mdx(),
     sitemap(),

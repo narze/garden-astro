@@ -22,7 +22,10 @@ export const resolveLinks = (filePath: string) => {
             `./src/content/second-brain/${linkUrl}`
           )
 
-          if (fs.existsSync(linkDestinationPath)) {
+          if (
+            fs.existsSync(linkDestinationPath) &&
+            fs.lstatSync(linkDestinationPath).isFile()
+          ) {
             try {
               const destFile = matter.read(linkDestinationPath)
 

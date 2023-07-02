@@ -7,6 +7,7 @@ import nodePath from "node:path"
 import matter from "gray-matter"
 import { extractImageSources } from "./extract-image-sources"
 import { resolveLinks } from "./resolve-links"
+import { addFilepath } from "./add-filepath"
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -90,7 +91,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
                 // Parse the file with remark, and then get image paths
                 // Copy those images to public/images/**
                 const imageSources = extractImageSources(path)
-                console.log({ imageSources })
+                // console.log({ imageSources })
 
                 imageSources.forEach((imageSource) => {
                   const srcPath = `./tmp/second-brain/${imageSource}`
@@ -111,7 +112,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
 
                   copyFileSync(srcPath, destinationPath)
 
-                  console.log("Copied", srcPath, "to", destinationPath)
+                  // console.log("Copied", srcPath, "to", destinationPath)
                 })
               }
             } catch (e) {
@@ -121,10 +122,10 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
 
         console.log("Done fetching files from narze/garden")
 
-        // Resolve links
         globSync("./src/content/second-brain/**/*.{md,mdx,svx}").forEach(
           (path) => {
             resolveLinks(path)
+            addFilepath(path)
           }
         )
 

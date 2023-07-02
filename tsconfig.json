@@ -2,6 +2,5 @@
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
     "strictNullChecks": true
-  },
-  "include": ["src/**/*", "./dev.ts"]
+  }
 }
