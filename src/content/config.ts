@@ -16,7 +16,7 @@ const blog = defineCollection({
       .transform((str) => (str ? new Date(str) : undefined)),
     heroImage: z.string().optional(),
     draft: z.boolean().optional(),
-    filepath: z.string(), // Added from add-filepath plugin
+    filepath: z.string().optional(), // Added from add-filepath plugin
   }),
 })
 
