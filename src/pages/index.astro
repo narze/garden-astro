@@ -1,15 +1,15 @@
 ---
-import { getCollection } from "astro:content";
+import { getCollection } from "astro:content"
 
-import Layout from "../layouts/Layout.astro";
-import FormattedDate from "../components/FormattedDate.astro";
-import { DEV } from "../consts";
+import Layout from "../layouts/Layout.astro"
+import FormattedDate from "../components/FormattedDate.astro"
+import { DEV } from "../consts"
 
 const posts = (
   await getCollection("second-brain", ({ data }) => {
-    return DEV ? true : (data.draft !== true)
+    return DEV ? true : data.draft !== true
   })
-).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 ---
 
 <Layout>
@@ -18,8 +18,11 @@ const posts = (
     <ul class="mt-8">
       {
         posts.map((post) => (
-          <li >
-            {post.data.draft ? "(Draft)" : null} <a href={`/${post.slug}/`}><FormattedDate date={post.data.date!} /> {post.data.title}</a>
+          <li>
+            {post.data.draft ? "(Draft)" : null}{" "}
+            <a href={`/${post.slug}/`}>
+              <FormattedDate date={post.data.date!} /> {post.data.title}
+            </a>
           </li>
         ))
       }

@@ -1,26 +1,26 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import SecondBrainPost from '../layouts/SecondBrainPost.astro';
-import { DEV } from '../consts';
+import { CollectionEntry, getCollection } from "astro:content"
+import SecondBrainPost from "../layouts/SecondBrainPost.astro"
+import { DEV } from "../consts"
 
 export async function getStaticPaths() {
-	const secondBrainPosts = await getCollection('second-brain', ({ data }) => {
-    return DEV ? true : (data.draft !== true)
-  });
+  const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
+    return DEV ? true : data.draft !== true
+  })
 
-	return secondBrainPosts.map((post) => {
+  return secondBrainPosts.map((post) => {
     return {
       params: { slug: post.slug },
       props: post,
-	  }
-  });
+    }
+  })
 }
-type Props = CollectionEntry<'second-brain'>;
+type Props = CollectionEntry<"second-brain">
 
-const post = Astro.props;
-const { Content } = await post.render();
+const post = Astro.props
+const { Content } = await post.render()
 ---
 
 <SecondBrainPost {...post.data}>
-	<Content />
+  <Content />
 </SecondBrainPost>
