@@ -5,7 +5,8 @@ import { rimrafSync } from "rimraf"
 import fs, { copyFileSync } from "node:fs"
 import nodePath from "node:path"
 import matter from "gray-matter"
-import { extractImageSources } from "./extract-image-sources.ts"
+import { extractImageSources } from "./extract-image-sources"
+import { resolveLinks } from "./resolve-links"
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -28,7 +29,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
         rimrafSync("./public/images/*", { glob: true })
         rimrafSync("./src/content/second-brain/*", { glob: true })
 
-        const slugs = []
+        const slugs: string[] = []
         // For each file in the directory, we need to:
         // 1. Filter out non-markdown files
         // 2. Read the file frontmatter
@@ -119,6 +120,13 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
           })
 
         console.log("Done fetching files from narze/garden")
+
+        // Resolve links
+        globSync("./src/content/second-brain/**/*.{md,mdx,svx}").forEach(
+          (path) => {
+            resolveLinks(path)
+          }
+        )
 
         return
       },

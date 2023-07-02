@@ -2,7 +2,9 @@ import chokidar from "chokidar"
 import fs, { copyFileSync } from "node:fs"
 import path from "node:path"
 import { rimrafSync } from "rimraf"
-import { extractImageSources } from "./src/lib/extract-image-sources.ts"
+
+import { extractImageSources } from "./src/lib/extract-image-sources"
+import { resolveLinks } from "./src/lib/resolve-links"
 
 const obsidianPath = resolveHome(
   `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
@@ -86,6 +88,8 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
 
     console.log("Copied", srcPath, "to", destinationPath)
   })
+
+  resolveLinks(destinationPath)
 })
 
 // Cleanup src/content/second-brain/local on exit

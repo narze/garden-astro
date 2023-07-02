@@ -2,10 +2,10 @@ import fs from "node:fs"
 import { remark } from "remark"
 import { visit } from "unist-util-visit"
 
-export const extractImageSources = (filePath) => {
+export const extractImageSources = (filePath: string) => {
   const markdown = fs.readFileSync(filePath, "utf-8")
 
-  const imageSources = []
+  const imageSources: string[] = []
 
   const processor = remark().use(() => (tree) => {
     visit(tree, "image", (node) => {

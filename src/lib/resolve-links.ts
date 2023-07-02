@@ -1,0 +1,50 @@
+import fs from "node:fs"
+import path from "node:path"
+import { remark } from "remark"
+import { visit } from "unist-util-visit"
+import matter from "gray-matter"
+import remarkFrontmatter from "remark-frontmatter"
+
+export const resolveLinks = (filePath: string) => {
+  let modified = false
+  const markdown = fs.readFileSync(filePath, "utf-8")
+
+  const imageSources: string[] = []
+
+  const processor = remark()
+    .use(remarkFrontmatter)
+    .use(() => (tree) => {
+      visit(tree, "link", (node) => {
+        if (!node.url.startsWith("http") && !node.url.startsWith("kindle:")) {
+          const linkUrl = decodeURI(node.url)
+
+          const linkDestinationPath = path.resolve(
+            `./src/content/second-brain/${linkUrl}`
+          )
+
+          if (fs.existsSync(linkDestinationPath)) {
+            try {
+              const destFile = matter.read(linkDestinationPath)
+
+              if (destFile?.data?.slug) {
+                node.url = encodeURI(`/${destFile.data.slug}`)
+                modified = true
+              }
+            } catch (e) {
+              console.error(e)
+            }
+          }
+        }
+      })
+    })
+
+  const result = processor.processSync(markdown)
+
+  if (modified) {
+    fs.writeFileSync(filePath, String(result), {
+      encoding: "utf-8",
+    })
+  }
+
+  return imageSources
+}
