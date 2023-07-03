@@ -2,6 +2,7 @@ import chokidar from "chokidar"
 import fs, { copyFileSync } from "node:fs"
 import path from "node:path"
 import { rimrafSync } from "rimraf"
+import matter from "gray-matter"
 
 import { extractImageSources } from "./src/lib/extract-image-sources"
 import { resolveLinks } from "./src/lib/resolve-links"
@@ -39,7 +40,17 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
     return
   }
 
-  // console.log(filePath, stats)
+  const file = matter.read(filePath)
+
+  if (
+    !(
+      file?.data?.date &&
+      file?.data?.title &&
+      String(file?.data?.publish) === "true"
+    )
+  ) {
+    return
+  }
 
   // Copy file to src/content/second-brain/local/**
   const destinationPath = `./src/content/second-brain/local/${filePath.replace(
