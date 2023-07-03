@@ -8,7 +8,7 @@
     "dev:garden": "tsx dev.ts",
     "dev:search": "astro build && pagefind --source dist --bundle-dir pagefind --serve & open http://localhost:1414",
     "start": "astro dev",
-    "build": "astro build && build:post",
+    "build": "run-s -c \"astro build\" build:post",
     "build:post": "pagefind --source dist --bundle-dir pagefind",
     "preview": "astro preview",
     "astro": "astro",
