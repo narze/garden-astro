@@ -5,7 +5,7 @@ import Layout from "./Layout.astro"
 
 type Props = CollectionEntry<"second-brain">["data"]
 
-const { title, date, draft, updated, filepath } = Astro.props
+const { title, date, draft, updated, filepath, tags } = Astro.props
 ---
 
 <Layout>
@@ -25,13 +25,17 @@ const { title, date, draft, updated, filepath } = Astro.props
 			}
 		</style>
 	</head> -->
+
   <article class="container">
-    <div class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8">
+    <div
+      class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8 flex flex-col gap-2"
+    >
       <!-- {heroImage && <img width={720} height={360} src={heroImage} alt="" />} -->
       <h1 class="title">{title} {draft ? "(Draft)" : null}</h1>
 
-      <FormattedDate date={date} />
       <small>
+        <FormattedDate date={date} />
+
         {
           updated && (
             <div class="last-updated-on">
@@ -40,8 +44,28 @@ const { title, date, draft, updated, filepath } = Astro.props
           )
         }
         <!-- <hr /> -->
-        <slot />
       </small>
+
+      <!-- Tags -->
+      {
+        tags && tags.length && (
+          <div class="flex gap-1">
+            {tags.map((tag) => (
+              <a
+                href={`/tags/${tag}`}
+                class="inline-block text-sm font-light text-gray-700 bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
+        )
+      }
+
+      <!-- Content -->
+      <div>
+        <slot />
+      </div>
     </div>
 
     <!-- View Source -->

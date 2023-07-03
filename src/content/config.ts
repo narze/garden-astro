@@ -17,6 +17,7 @@ const blog = defineCollection({
     heroImage: z.string().optional(),
     draft: z.boolean().optional(),
     filepath: z.string().optional(), // Added from add-filepath plugin
+    tags: z.array(z.string()).optional(),
   }),
 })
 
@@ -38,6 +39,7 @@ const secondBrain = defineCollection({
       .transform((str) => (str ? new Date(str) : undefined)),
     draft: z.boolean().optional(),
     filepath: z.string(), // Added from add-filepath plugin
+    tags: z.array(z.string()).optional(),
   }),
 })
 
