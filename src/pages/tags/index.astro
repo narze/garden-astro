@@ -1,7 +1,6 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content"
+import { getCollection } from "astro:content"
 import { DEV } from "../../consts"
-import FormattedDate from "../../components/FormattedDate.astro"
 import Layout from "../../layouts/Layout.astro"
 
 const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
@@ -13,7 +12,7 @@ const tags = [
 ]
 ---
 
-<Layout>
+<Layout title={`Tags`}>
   <article class="container">
     <div
       class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8 flex flex-col gap-2"

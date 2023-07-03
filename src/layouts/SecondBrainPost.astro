@@ -8,7 +8,7 @@ type Props = CollectionEntry<"second-brain">["data"]
 const { title, date, draft, updated, filepath, tags } = Astro.props
 ---
 
-<Layout>
+<Layout title={title}>
   <!-- <head>
 		<BaseHead title={title} description={""} />
 		<style>

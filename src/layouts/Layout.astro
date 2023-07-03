@@ -4,18 +4,21 @@ import DarkModeScript from "../components/DarkModeScript.astro"
 import Footer from "../components/Footer.astro"
 import Header from "../components/Header.astro"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts"
+
+const { title } = Astro.props
+console.log({ title })
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    <BaseHead title={title || SITE_TITLE} description={SITE_DESCRIPTION} />
     <DarkModeScript />
   </head>
   <body
     class="flex flex-col h-[100svh] bg-white dark:bg-slate-800 text-black dark:text-white"
   >
-    <Header title={SITE_TITLE} />
+    <Header title={title || SITE_TITLE} />
 
     <main>
       <slot />
