@@ -2,6 +2,7 @@
 import HeaderLink from "./HeaderLink.astro"
 import { DEV, SITE_TITLE } from "../consts"
 import ThemeSwitch from "./ThemeSwitch.svelte"
+import Search from "./Search.svelte"
 ---
 
 <header>
@@ -9,7 +10,8 @@ import ThemeSwitch from "./ThemeSwitch.svelte"
     <h2 class="font-bold">
       <a href="/">{SITE_TITLE}</a>
     </h2>
-    <nav class="flex gap-2 my-2">
+    <nav class="flex gap-2 my-2 items-center">
+      <Search client:load />
       {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
       <HeaderLink href="/second-brain">Entries</HeaderLink>
       <ThemeSwitch client:only />
