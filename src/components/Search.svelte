@@ -1,8 +1,7 @@
 <script lang="ts">
-  import { onMount } from "svelte"
-
   let searchEntry: string = ""
   let results: any[] = []
+  let loading = false
 
   $: if (searchEntry.length == 0) {
     results = []
@@ -11,6 +10,7 @@
   }
 
   async function doSearch(searchEntry: string) {
+    loading = true
     const search = await window.pagefind.search(searchEntry)
 
     const resultsTemp = []
@@ -19,6 +19,7 @@
       const data = await result.data()
       resultsTemp.push(data)
     }
+    loading = false
 
     results = resultsTemp
   }
@@ -32,22 +33,28 @@
   bind:value={searchEntry}
 />
 
-{#if results.length}
+{#if searchEntry.length}
   <div
     id="results"
     class="absolute top-20 left-0 w-full h-full bg-white dark:bg-slate-800"
   >
     <div class="container max-w-3xl">
-      <ul>
-        {#each results as result}
-          <li class="border border-slate-500 rounded px-4 py-6 my-2">
-            <a href={result.url}>
-              <h3>{result.meta.title}</h3>
-              <p>{result.excerpt}</p>
-            </a>
-          </li>
-        {/each}
-      </ul>
+      {#if loading}
+        <p class="text-center mt-4">Searching...</p>
+      {:else if results.length}
+        <ul>
+          {#each results as result}
+            <li class="border border-slate-500 rounded px-4 py-6 my-2">
+              <a href={result.url}>
+                <h3>{result.meta.title}</h3>
+                <p>{result.excerpt}</p>
+              </a>
+            </li>
+          {/each}
+        </ul>
+      {:else}
+        <p class="text-center mt-4">No results found.</p>
+      {/if}
     </div>
   </div>
 {/if}

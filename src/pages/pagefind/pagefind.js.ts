@@ -5,25 +5,32 @@ import type { APIContext } from "astro"
 
 export async function get({}: APIContext) {
   return {
-    body: `export const search = () => {return {results: [
-      {
-        data: () => ({
-          url: "/",
-          meta: {
-            title: "Homepage",
+    body: `export const search = async () => {
+      // Wait for 0.5 second to simulate a slow network
+      await new Promise((resolve) => setTimeout(resolve, 500))
+
+      return {
+        results: [
+          {
+            data: () => ({
+              url: "/",
+              meta: {
+                title: "Homepage",
+              },
+              excerpt: "This is the fake result for development",
+            })
           },
-          excerpt: "This is the fake result for development",
-        })
-      },
-      {
-        data: () => ({
-          url: "/tags",
-          meta: {
-            title: "Tags",
+          {
+            data: () => ({
+              url: "/tags",
+              meta: {
+                title: "Tags",
+              },
+              excerpt: "This is the tag pages",
+            })
           },
-          excerpt: "This is the tag pages",
-        })
-      },
-    ]}}`,
+        ]
+      }
+    }`,
   }
 }
