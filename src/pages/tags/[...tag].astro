@@ -1,0 +1,57 @@
+---
+import { CollectionEntry, getCollection } from "astro:content"
+import { DEV } from "../../consts"
+import FormattedDate from "../../components/FormattedDate.astro"
+import Layout from "../../layouts/Layout.astro"
+
+export async function getStaticPaths() {
+  const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
+    return DEV ? true : data.draft !== true
+  })
+
+  const uniqueTags = [
+    ...new Set(secondBrainPosts.map((post) => post.data?.tags || []).flat()),
+  ]
+
+  return uniqueTags.map((tag) => {
+    const filteredPosts = secondBrainPosts
+      .filter((post) => post.data?.tags?.includes(tag))
+      .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+    return {
+      params: { tag },
+      props: { posts: filteredPosts },
+    }
+  })
+}
+
+type Props = { posts: CollectionEntry<"second-brain">[] }
+
+const { tag } = Astro.params
+const { posts } = Astro.props
+---
+
+<Layout>
+  <article class="container">
+    <div
+      class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8 flex flex-col gap-2"
+    >
+      <h3>
+        <a href="/tags">Tags</a> - <small>#{tag}</small>
+      </h3>
+      <ul>
+        {
+          posts.map((post) => (
+            <li>
+              {post.data.draft ? "(Draft)" : null}{" "}
+              <a href={`/${post.slug}/`}>{post.data.title}</a>
+              <small>
+                <FormattedDate date={post.data.date} />
+              </small>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </article>
+</Layout>

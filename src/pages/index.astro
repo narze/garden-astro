@@ -20,9 +20,10 @@ const posts = (
         posts.map((post) => (
           <li>
             {post.data.draft ? "(Draft)" : null}{" "}
-            <a href={`/${post.slug}/`}>
-              <FormattedDate date={post.data.date!} /> {post.data.title}
-            </a>
+            <a href={`/${post.slug}/`}>{post.data.title}</a>
+            <small>
+              <FormattedDate date={post.data.date} />
+            </small>
           </li>
         ))
       }

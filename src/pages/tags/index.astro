@@ -1,0 +1,34 @@
+---
+import { CollectionEntry, getCollection } from "astro:content"
+import { DEV } from "../../consts"
+import FormattedDate from "../../components/FormattedDate.astro"
+import Layout from "../../layouts/Layout.astro"
+
+const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
+  return DEV ? true : data.draft !== true
+})
+
+const tags = [
+  ...new Set(secondBrainPosts.map((post) => post.data?.tags || []).flat()),
+]
+---
+
+<Layout>
+  <article class="container">
+    <div
+      class="max-w-none prose prose-lg lg:prose-xl dark:prose-invert pt-8 flex flex-col gap-2"
+    >
+      <h2>Tags</h2>
+
+      <ul>
+        {
+          tags.map((tag) => (
+            <li>
+              <a href={`/tags/${tag}`}>#{tag}</a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </article>
+</Layout>
