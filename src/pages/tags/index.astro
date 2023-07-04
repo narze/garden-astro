@@ -4,6 +4,8 @@ import { DEV } from "../../consts"
 import Layout from "../../layouts/Layout.astro"
 
 const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
+  if (!data.tags?.[0]) return false
+
   return DEV ? true : data.draft !== true
 })
 
