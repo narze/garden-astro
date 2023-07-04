@@ -21,7 +21,7 @@ function prependImageSrcPlugin() {
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://garden-astro.vercel.app",
+  site: "https://garden.narze.live",
   integrations: [
     mdx(),
     sitemap(),
