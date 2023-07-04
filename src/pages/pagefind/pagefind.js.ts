@@ -17,7 +17,7 @@ export async function get({}: APIContext) {
               meta: {
                 title: "Homepage",
               },
-              excerpt: "This is the fake result for development",
+              excerpt: "This is the <mark>fake</mark> result for development",
             })
           },
           {
@@ -26,11 +26,13 @@ export async function get({}: APIContext) {
               meta: {
                 title: "Tags",
               },
-              excerpt: "This is the tag pages",
+              excerpt: "This is the <mark>tag</mark> pages",
             })
           },
         ]
       }
-    }`,
+    }
+
+    export const debouncedSearch = search`,
   }
 }

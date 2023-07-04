@@ -11,7 +11,11 @@
 
   async function doSearch(searchEntry: string) {
     loading = true
-    const search = await window.pagefind.search(searchEntry)
+    const search = await window.pagefind.debouncedSearch(searchEntry, {
+      sort: {
+        date: "desc",
+      },
+    })
 
     const resultsTemp = []
 
@@ -47,7 +51,9 @@
             <li class="border border-slate-500 rounded px-4 py-6 my-2">
               <a href={result.url}>
                 <h3>{result.meta.title}</h3>
-                <p>{result.excerpt}</p>
+                <!-- Pagefind will return <mark> tags -->
+                <!-- eslint-disable-next-line svelte/no-at-html-tags -->
+                <p>{@html result.excerpt}</p>
               </a>
             </li>
           {/each}
