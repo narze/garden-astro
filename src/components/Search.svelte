@@ -3,7 +3,7 @@
   let results: any[] = []
   let loading = false
 
-  $: if (searchEntry.length == 0) {
+  $: if (searchEntry.length <= 1) {
     results = []
   } else {
     doSearch(searchEntry)
@@ -39,7 +39,7 @@
   bind:value={searchEntry}
 />
 
-{#if searchEntry.length}
+{#if searchEntry.length > 1}
   <div
     id="results"
     class="absolute top-20 left-0 w-full h-full bg-white dark:bg-slate-800"
