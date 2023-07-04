@@ -17,6 +17,11 @@
       },
     })
 
+    if (!search) {
+      // a more recent search call has been made, nothing to do
+      return
+    }
+
     const resultsTemp = []
 
     for (const result of search.results) {
