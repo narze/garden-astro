@@ -3,12 +3,14 @@ import HeaderLink from "./HeaderLink.astro"
 import { DEV, SITE_TITLE } from "../consts"
 import ThemeSwitch from "./ThemeSwitch.svelte"
 import Search from "./Search.svelte"
+import WebringIcon from "./WebringIcon.astro"
 ---
 
 <header>
   <div class="container flex justify-between my-4 items-center text-lg">
-    <h2 class="font-bold">
+    <h2 class="font-bold flex gap-2">
       <a href="/">{SITE_TITLE}</a>
+      <WebringIcon />
     </h2>
     <nav class="flex gap-2 my-2 items-center">
       <Search client:load />
