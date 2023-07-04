@@ -11,11 +11,7 @@
 
   async function doSearch(searchEntry: string) {
     loading = true
-    const search = await window.pagefind.debouncedSearch(searchEntry, {
-      sort: {
-        date: "desc",
-      },
-    })
+    const search = await window.pagefind.debouncedSearch(searchEntry)
 
     if (!search) {
       // a more recent search call has been made, nothing to do
