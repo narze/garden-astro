@@ -33,7 +33,8 @@
 <input
   id="search"
   type="text"
-  class="hidden text-black dark:text-white bg-slate-300 dark:bg-slate-600 p-2 py-1 rounded"
+  disabled={true}
+  class="text-black dark:text-white bg-slate-300 dark:bg-slate-600 p-2 py-1 rounded"
   placeholder="Search"
   bind:value={searchEntry}
 />
@@ -71,7 +72,8 @@
     ;(async function () {
       if (document.querySelector("#search").dataset.loaded !== "true") {
         document.querySelector("#search").dataset.loaded = "true"
-        document.querySelector("#search").classList.remove("hidden")
+        // document.querySelector("#search").classList.remove("hidden")
+        document.querySelector("#search").removeAttribute("disabled")
         window.pagefind = await import("/pagefind/pagefind.js")
       }
     })()
