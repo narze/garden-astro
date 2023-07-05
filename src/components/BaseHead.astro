@@ -11,7 +11,9 @@ export interface Props {
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
-const { title, description, image = "/placeholder-social.jpg" } = Astro.props
+const { title, description } = Astro.props
+const ogImageUrl = (url: string) =>
+  `https://pptrio.narze.live/api/screenshot?width=1200&height=630&deviceScaleFactor=1&y=64&dark=1&url=${url}`
 ---
 
 <!-- Global Metadata -->
@@ -33,11 +35,11 @@ const { title, description, image = "/placeholder-social.jpg" } = Astro.props
 <meta property="og:url" content={Astro.url} />
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
-<meta property="og:image" content={new URL(image, Astro.url)} />
+<meta property="og:image" content={ogImageUrl(String(Astro.url))} />
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
 <meta property="twitter:url" content={Astro.url} />
 <meta property="twitter:title" content={title} />
 <meta property="twitter:description" content={description} />
-<meta property="twitter:image" content={new URL(image, Astro.url)} />
+<meta property="twitter:image" content={ogImageUrl(String(Astro.url))} />
