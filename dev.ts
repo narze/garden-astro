@@ -7,6 +7,7 @@ import matter from "gray-matter"
 import { extractImageSources } from "./src/lib/extract-image-sources"
 import { resolveLinks } from "./src/lib/resolve-links"
 import { addFilepath } from "./src/lib/add-filepath"
+import { stripHashFromTags } from "./src/lib/strip-hash-from-tags"
 
 const obsidianPath = resolveHome(
   `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
@@ -103,6 +104,7 @@ chokidar.watch(obsidianPath).on("change", (filePath, stats) => {
 
   resolveLinks(destinationPath)
   addFilepath(destinationPath)
+  stripHashFromTags(destinationPath)
 })
 
 // Cleanup src/content/second-brain/local on exit

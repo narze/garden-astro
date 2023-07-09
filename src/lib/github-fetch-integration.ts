@@ -8,6 +8,7 @@ import matter from "gray-matter"
 import { extractImageSources } from "./extract-image-sources"
 import { resolveLinks } from "./resolve-links"
 import { addFilepath } from "./add-filepath"
+import { stripHashFromTags } from "./strip-hash-from-tags"
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -126,6 +127,7 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
           (path) => {
             resolveLinks(path)
             addFilepath(path)
+            stripHashFromTags(path)
           }
         )
 
