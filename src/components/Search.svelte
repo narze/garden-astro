@@ -34,7 +34,7 @@
   id="search"
   type="text"
   disabled={true}
-  class="text-black dark:text-white bg-slate-300 dark:bg-slate-600 p-2 py-1 rounded"
+  class="shrink w-24 sm:w-32 md:w-auto text-black dark:text-white bg-slate-300 dark:bg-slate-600 p-2 py-1 rounded"
   placeholder="Search"
   bind:value={searchEntry}
 />
