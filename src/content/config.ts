@@ -39,7 +39,19 @@ const secondBrain = defineCollection({
       .transform((str) => (str ? new Date(str) : undefined)),
     draft: z.boolean().optional(),
     filepath: z.string(), // Added from add-filepath plugin
-    tags: z.array(z.string().or(z.null())).optional(),
+    tags: z
+      .array(
+        z
+          .string()
+          .refine(
+            (tag) => !/\s/.test(tag),
+            (tag) => ({
+              message: `Tag "${tag}" cannot include whitespaces`,
+            })
+          )
+          .or(z.null())
+      )
+      .optional(),
   }),
 })
 
