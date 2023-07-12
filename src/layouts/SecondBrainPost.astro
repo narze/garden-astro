@@ -68,8 +68,7 @@ const { title, date, draft, updated, filepath, tags } = Astro.props
       </div>
     </div>
 
-    <!-- View Source -->
-    <div class="mt-8">
+    <div class="mt-8 flex gap-4">
       <a
         href={`https://github.com/narze/second-brain/blob/main/${filepath.replace(
           "src/content/second-brain/",
@@ -80,6 +79,19 @@ const { title, date, draft, updated, filepath, tags } = Astro.props
         class="text-sm text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
       >
         View Source
+      </a>
+
+      <a
+        href={`obsidian://advanced-uri?filepath=${encodeURIComponent(
+          filepath
+            .replace("src/content/second-brain/", "")
+            .replace("local/", "")
+        )}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="text-sm text-gray-500 hover:text-gray-600 dark:text-gray-400 dark:hover:text-gray-300"
+      >
+        Edit in Obsidian
       </a>
     </div>
   </article>
