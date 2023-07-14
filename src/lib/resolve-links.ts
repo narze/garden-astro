@@ -36,6 +36,13 @@ export const resolveLinks = (filePath: string) => {
             } catch (e) {
               console.error(e)
             }
+          } else {
+            // Link is not valid (due to the file is not imported or not exists)
+            ;(node as any).type = "text"
+            ;(node as any).value = node.children
+              .map((child) => (child as any).value)
+              .join("")
+            modified = true
           }
         }
       })
