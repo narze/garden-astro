@@ -17,7 +17,11 @@ export async function getStaticPaths() {
 
   return uniqueTags.map((tag) => {
     const filteredPosts = secondBrainPosts
-      .filter((post) => post.data?.tags?.includes(tag))
+      .filter((post) =>
+        post.data?.tags
+          ?.map((t) => t?.toLowerCase())
+          .includes(tag?.toLowerCase())
+      )
       .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 
     return {
