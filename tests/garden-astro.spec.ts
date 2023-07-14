@@ -9,6 +9,7 @@ test("has title", async ({ page }) => {
 test("internal links are working", async ({ page }) => {
   const links = ["/"]
   const visited = new Set<string>()
+  const linkFromPage: Map<string, string[]> = new Map()
 
   while (links.length > 0) {
     const link = links.pop()
@@ -24,11 +25,24 @@ test("internal links are working", async ({ page }) => {
     const response = await page.goto(link)
     expect(
       response?.status(),
-      `Link error (code${response?.status()}): ${link} `
+      `Invalid link (${response?.status()}): ${link} (from ${linkFromPage.get(
+        link
+      )}`
     ).toBe(200)
 
     visited.add(link)
-    ;(await getInternalLinks(page)).forEach((link: string) => links.push(link))
+
+    const pageLinks = await getInternalLinks(page)
+
+    pageLinks.forEach((link: string) => {
+      links.push(link)
+
+      if (!linkFromPage.has(link)) {
+        linkFromPage.set(link, [])
+      }
+
+      linkFromPage.get(link)?.push(page.url())
+    })
   }
 })
 
