@@ -7,6 +7,7 @@
     "dev:astro": "astro dev",
     "dev:garden": "tsx dev.ts",
     "dev:search": "astro build && pagefind --source dist --bundle-dir pagefind --serve & open http://localhost:1414",
+    "test": "playwright test",
     "start": "astro dev",
     "build": "run-s -c \"astro build\" build:post",
     "build:post": "pagefind --source dist --bundle-dir pagefind",
@@ -25,6 +26,7 @@
     "tailwindcss": "^3.0.24"
   },
   "devDependencies": {
+    "@playwright/test": "^1.36.0",
     "@tailwindcss/typography": "^0.5.9",
     "@types/degit": "^2.8.3",
     "@typescript-eslint/parser": "^5.60.1",

@@ -22,3 +22,6 @@ pnpm-debug.log*
 /tmp
 /src/content/second-brain
 /public/images/
+/test-results/
+/playwright-report/
+/playwright/.cache/
