@@ -50,14 +50,17 @@ const { title, date, draft, updated, filepath, tags } = Astro.props
       {
         tags && tags.length && (
           <div class="flex gap-1">
-            {tags.map((tag) => (
-              <a
-                href={`/tags/${tag}`}
-                class="inline-block text-sm font-light text-gray-700 bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
-              >
-                {tag}
-              </a>
-            ))}
+            {tags.map(
+              (tag) =>
+                tag && (
+                  <a
+                    href={`/tags/${tag}`}
+                    class="inline-block text-sm font-light text-gray-700 bg-gray-200 dark:bg-gray-800 dark:text-gray-200"
+                  >
+                    {tag}
+                  </a>
+                )
+            )}
           </div>
         )
       }
