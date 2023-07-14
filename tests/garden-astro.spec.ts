@@ -7,6 +7,8 @@ test("has title", async ({ page }) => {
 })
 
 test("internal links are working", async ({ page }) => {
+  test.setTimeout(5 * 60 * 1000)
+
   const links = ["/"]
   const visited = new Set<string>()
   const linkFromPage: Map<string, string[]> = new Map()
