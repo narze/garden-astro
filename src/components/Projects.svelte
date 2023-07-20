@@ -1,6 +1,8 @@
 <script lang="ts">
   export let projects: Project[] = []
 
+  let filterTag = ""
+
   interface Project {
     name: string
     description: string
@@ -12,10 +14,25 @@
 
   const imageUrl = (url: string) =>
     `https://pptr.io/api/screenshot?width=400&height=300&deviceScaleFactor=1&dark=1&url=${url}`
+
+  $: filteredProjects = projects.filter((project) => {
+    if (!filterTag?.length) {
+      return true
+    }
+
+    return project.tags?.includes(filterTag)
+  })
 </script>
 
+{#if filterTag?.length}
+  Filter: <button
+    class="px-2 py-1 mb-4 mr-1 text-xs font-medium tracking-wide text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
+    on:click={() => (filterTag = "")}>{filterTag} x</button
+  >
+{/if}
+
 <main class="not-prose grid grid-cols-3 gap-4">
-  {#each projects as project}
+  {#each filteredProjects as project}
     <div
       class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
@@ -34,11 +51,12 @@
         {#if project.tags?.length}
           <div class="flex flex-wrap mb-3 -mx-1">
             {#each project.tags as tag}
-              <span
+              <button
                 class="px-2 py-1 mb-1 mr-1 text-xs font-medium tracking-wide text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
+                on:click={() => (filterTag = tag)}
               >
                 {tag}
-              </span>
+              </button>
             {/each}
           </div>
         {/if}
