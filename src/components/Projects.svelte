@@ -31,13 +31,15 @@
   >
 {/if}
 
-<main class="not-prose grid grid-cols-3 gap-4">
+<main
+  class="not-prose grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 auto-cols-fr gap-4"
+>
   {#each filteredProjects as project}
     <div
-      class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
+      class="maxw-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700"
     >
       <img
-        class="rounded-t-lg object-cover"
+        class="rounded-t-lg object-cover w-full"
         src={project.image_url ?? imageUrl(project.website_url)}
         alt={project.name}
       />
