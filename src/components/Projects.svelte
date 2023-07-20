@@ -1,7 +1,7 @@
 <script lang="ts">
   export let projects: Project[] = []
 
-  let filterTag = ""
+  let selectedTag = ""
 
   interface Project {
     name: string
@@ -16,18 +16,18 @@
     `https://pptr.io/api/screenshot?width=400&height=300&deviceScaleFactor=1&dark=1&url=${url}`
 
   $: filteredProjects = projects.filter((project) => {
-    if (!filterTag?.length) {
+    if (!selectedTag?.length) {
       return true
     }
 
-    return project.tags?.includes(filterTag)
+    return project.tags?.includes(selectedTag)
   })
 </script>
 
-{#if filterTag?.length}
+{#if selectedTag?.length}
   Filter: <button
     class="px-2 py-1 mb-4 mr-1 text-xs font-medium tracking-wide text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
-    on:click={() => (filterTag = "")}>{filterTag} x</button
+    on:click={() => (selectedTag = "")}>{selectedTag} x</button
   >
 {/if}
 
@@ -55,7 +55,7 @@
             {#each project.tags as tag}
               <button
                 class="px-2 py-1 mb-1 mr-1 text-xs font-medium tracking-wide text-gray-800 bg-gray-100 rounded-full dark:bg-gray-700 dark:text-gray-200"
-                on:click={() => (filterTag = tag)}
+                on:click={() => (selectedTag = tag)}
               >
                 {tag}
               </button>
