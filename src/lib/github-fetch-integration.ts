@@ -36,6 +36,9 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
         let data = Buffer.from(downloadResponse.data as ArrayBuffer)
 
         // Write
+        if (!fs.existsSync("./tmp")) {
+          fs.mkdirSync("./tmp")
+        }
         const archivePath = nodePath.join("./tmp/", `archive.tar.gz`)
         await fs.promises.writeFile(archivePath, data)
         data = Buffer.from("") // Free memory
