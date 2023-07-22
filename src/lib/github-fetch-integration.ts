@@ -9,6 +9,8 @@ import { extractImageSources } from "./extract-image-sources"
 import { resolveLinks } from "./resolve-links"
 import { addFilepath } from "./add-filepath"
 import { stripHashFromTags } from "./strip-hash-from-tags"
+import { Octokit } from "octokit"
+import { extractTar } from "@actions/tool-cache"
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -18,15 +20,33 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
 
     hooks: {
       "astro:config:done": async ({ config: cfg }) => {
-        console.log("Config done, fetching files from narze/garden...")
+        console.log("Config done, fetching files from narze/second-brain...")
 
-        const emitter = degit("narze/second-brain#main", {
-          cache: false,
-          force: true,
-          verbose: true,
-        })
+        // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
+        const octokit = new Octokit({})
+        const owner = "narze"
+        const repo = "second-brain"
+        const downloadResponse =
+          await octokit.rest.repos.downloadTarballArchive({
+            owner,
+            repo,
+            ref: "main",
+          })
 
-        await emitter.clone("./tmp/second-brain")
+        let data = Buffer.from(downloadResponse.data as ArrayBuffer)
+
+        // Write
+        const archivePath = nodePath.join("./tmp/", `archive.tar.gz`)
+        await fs.promises.writeFile(archivePath, data)
+        data = Buffer.from("") // Free memory
+
+        // Extract file to ./tmp/second-brain
+        const extractedFolder = await extractTar(
+          archivePath,
+          "./tmp/second-brain"
+        )
+
+        console.log({ extractedFolder })
 
         rimrafSync("./public/images/*", { glob: true })
         rimrafSync("./src/content/second-brain/*", { glob: true })
