@@ -1,5 +1,4 @@
 import type { AstroIntegration, AstroConfig } from "astro"
-import degit from "degit"
 import { globSync } from "glob"
 import { rimrafSync } from "rimraf"
 import fs, { copyFileSync } from "node:fs"
