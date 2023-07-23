@@ -29,6 +29,7 @@
     "@actions/tool-cache": "^2.0.1",
     "@playwright/test": "^1.36.0",
     "@tailwindcss/typography": "^0.5.9",
+    "@types/tar": "^6.1.5",
     "@typescript-eslint/parser": "^6.0.0",
     "chokidar": "^3.5.3",
     "eslint": "^8.45.0",
@@ -43,6 +44,7 @@
     "remark-frontmatter": "^4.0.1",
     "rimraf": "^5.0.1",
     "svelte": "^4.0.5",
+    "tar": "^6.1.15",
     "tsx": "^3.12.7",
     "unist-util-visit": "^5.0.0"
   }

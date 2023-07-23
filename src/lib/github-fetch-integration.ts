@@ -2,7 +2,7 @@ import type { AstroIntegration, AstroConfig } from "astro"
 import { globSync } from "glob"
 import { rimrafSync } from "rimraf"
 import fs, { copyFileSync } from "node:fs"
-import nodePath from "node:path"
+import nodePath, { basename, parse, sep } from "node:path"
 import matter from "gray-matter"
 import { extractImageSources } from "./extract-image-sources"
 import { resolveLinks } from "./resolve-links"
@@ -10,6 +10,36 @@ import { addFilepath } from "./add-filepath"
 import { stripHashFromTags } from "./strip-hash-from-tags"
 import { Octokit } from "octokit"
 import { extractTar } from "@actions/tool-cache"
+import { PassThrough, Readable } from "node:stream"
+import { pipeline } from "node:stream/promises"
+import tar, { ReadEntry } from "tar"
+
+type TarFilter = (path: string, entry: ReadEntry) => boolean
+
+// https://github.com/dtinth/notes-infrastructure/blob/main/src/workers/publish.ts
+async function* readTar(input: Readable, filter: TarFilter) {
+  const entryStream = new PassThrough({ objectMode: true })
+  const pipelinePromise = pipeline(
+    input,
+    new tar.Parse({
+      filter,
+      onentry: async (entry) => {
+        entryStream.write(entry)
+      },
+    })
+  ).then(() => {
+    entryStream.end()
+  })
+  for await (const entry of entryStream) {
+    const buffers: Buffer[] = []
+    for await (const data of entry) {
+      buffers.push(data)
+    }
+    const content = Buffer.concat(buffers)
+    yield { entry, content }
+  }
+  await pipelinePromise
+}
 
 const githubFetchIntegration = (options?: any): AstroIntegration => {
   let config: AstroConfig
@@ -32,23 +62,78 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
             ref: "main",
           })
 
+        // Write
+        rimrafSync("./tmp/second-brain")
+        fs.mkdirSync("./tmp/second-brain", { recursive: true })
+
         let data = Buffer.from(downloadResponse.data as ArrayBuffer)
 
-        // Write
-        if (!fs.existsSync("./tmp")) {
-          fs.mkdirSync("./tmp")
+        const passThroughStream = new PassThrough()
+        passThroughStream.end(data)
+
+        const fileFilter: TarFilter = (path, entry) => {
+          if (entry.type === "Directory") return false
+
+          const p = `/${pathWithoutTopmostDir(path)}`
+          // const name = basename(entry.path)
+          // console.log("type", entry.type)
+          console.log({ p })
+
+          // Excludes these files:
+          // - Includes #
+          // - Starts with _
+          // - Starts with .
+          // - Starts with /templates
+
+          if (
+            path.includes("/#") ||
+            p.includes("/_") ||
+            p.includes("/.") ||
+            p.includes("/_") ||
+            p.includes("/Untitled") ||
+            p.includes("/templates/")
+          )
+            return false
+
+          return true
+          // return entry.type === "File" && !!name.match(/^[^/]+\.md$/)
         }
-        const archivePath = nodePath.join("./tmp/", `archive.tar.gz`)
-        await fs.promises.writeFile(archivePath, data)
+
+        const pathWithoutTopmostDir = (path: string) => {
+          const pathObj = parse(path)
+          // Split the 'dir' into parts and remove the topmost directory
+          const dirParts = pathObj.dir.split(sep).slice(1)
+          // Join the relevant parts back together
+          return nodePath.join(...dirParts, pathObj.base)
+        }
+
+        for await (const item of readTar(passThroughStream, fileFilter)) {
+          const source = item.content.toString()
+          const name = basename(item.entry.path)
+          const path = pathWithoutTopmostDir(item.entry.path)
+
+          console.log({ name, path })
+
+          // Write to file
+          const destinationPath = `./tmp/second-brain/${path}`
+          const destinationDir = nodePath.dirname(destinationPath)
+          if (!fs.existsSync(destinationDir)) {
+            await fs.promises.mkdir(destinationDir, { recursive: true })
+          }
+          await fs.promises.writeFile(destinationPath, source)
+        }
+
+        // const archivePath = nodePath.join("./tmp/", `archive.tar.gz`)
+        // await fs.promises.writeFile(archivePath, data)
         data = Buffer.from("") // Free memory
 
-        // Extract file to ./tmp/second-brain
-        const extractedFolder = await extractTar(
-          archivePath,
-          "./tmp/second-brain"
-        )
+        // // Extract file to ./tmp/second-brain
+        // const extractedFolder = await extractTar(
+        //   archivePath,
+        //   "./tmp/second-brain"
+        // )
 
-        console.log({ extractedFolder })
+        // console.log({ extractedFolder })
 
         rimrafSync("./public/images/*", { glob: true })
         rimrafSync("./src/content/second-brain/*", { glob: true })
@@ -60,22 +145,22 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
         // 3. If it's has publish: true
         // Then copy those files to the src/content/second-brain directory
         globSync("./tmp/second-brain/**/*.{md,mdx,svx}")
-          .filter((path) => {
-            // Excludes these files:
-            // - Includes #
-            // - Starts with _
-            // - Starts with .
-            // - Starts with /templates
+          // .filter((path) => {
+          //   // Excludes these files:
+          //   // - Includes #
+          //   // - Starts with _
+          //   // - Starts with .
+          //   // - Starts with /templates
 
-            return (
-              !path.includes("#") &&
-              !path.includes("_") &&
-              !path.includes("/.") &&
-              !path.includes("/_") &&
-              !path.includes("/Untitled") &&
-              !path.includes("/templates/")
-            )
-          })
+          //   return (
+          //     !path.includes("#") &&
+          //     !path.includes("_") &&
+          //     !path.includes("/.") &&
+          //     !path.includes("/_") &&
+          //     !path.includes("/Untitled") &&
+          //     !path.includes("/templates/")
+          //   )
+          // })
           .forEach((path) => {
             try {
               const file = matter.read(path)
