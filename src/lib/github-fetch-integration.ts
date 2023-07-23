@@ -75,28 +75,24 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
           if (entry.type === "Directory") return false
 
           const p = `/${pathWithoutTopmostDir(path)}`
-          // const name = basename(entry.path)
-          // console.log("type", entry.type)
-          console.log({ p })
 
           // Excludes these files:
           // - Includes #
           // - Starts with _
           // - Starts with .
+          // - Untitled files
           // - Starts with /templates
 
           if (
-            path.includes("/#") ||
+            // p.includes("/#") ||
             p.includes("/_") ||
             p.includes("/.") ||
-            p.includes("/_") ||
             p.includes("/Untitled") ||
-            p.includes("/templates/")
+            p.startsWith("/templates/")
           )
             return false
 
           return true
-          // return entry.type === "File" && !!name.match(/^[^/]+\.md$/)
         }
 
         const pathWithoutTopmostDir = (path: string) => {
@@ -108,11 +104,8 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
         }
 
         for await (const item of readTar(passThroughStream, fileFilter)) {
-          const source = item.content.toString()
-          const name = basename(item.entry.path)
+          const content = item.content
           const path = pathWithoutTopmostDir(item.entry.path)
-
-          console.log({ name, path })
 
           // Write to file
           const destinationPath = `./tmp/second-brain/${path}`
@@ -120,20 +113,11 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
           if (!fs.existsSync(destinationDir)) {
             await fs.promises.mkdir(destinationDir, { recursive: true })
           }
-          await fs.promises.writeFile(destinationPath, source)
+
+          await fs.promises.writeFile(destinationPath, content)
         }
 
-        // const archivePath = nodePath.join("./tmp/", `archive.tar.gz`)
-        // await fs.promises.writeFile(archivePath, data)
         data = Buffer.from("") // Free memory
-
-        // // Extract file to ./tmp/second-brain
-        // const extractedFolder = await extractTar(
-        //   archivePath,
-        //   "./tmp/second-brain"
-        // )
-
-        // console.log({ extractedFolder })
 
         rimrafSync("./public/images/*", { glob: true })
         rimrafSync("./src/content/second-brain/*", { glob: true })
