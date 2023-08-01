@@ -20,8 +20,8 @@ const posts = (
         posts.map((post) => (
           <li>
             {post.data.draft ? "(Draft)" : null}{" "}
-            <a href={`/${post.slug}/`}>{post.data.title}</a>
-            <small>
+            <a href={`/${post.slug}/`} transition:name={`entry-${post.slug}`}>{post.data.title}</a>
+            <small transition:name={`entry-date-${post.slug}`} >
               <FormattedDate date={post.data.date} />
             </small>
           </li>
