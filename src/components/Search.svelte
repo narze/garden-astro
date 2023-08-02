@@ -42,7 +42,7 @@
 {#if searchEntry.length > 1}
   <div
     id="results"
-    class="absolute top-20 left-0 w-full h-full bg-white dark:bg-slate-800"
+    class="absolute top-20 left-0 w-full h-full bg-white dark:bg-slate-800 z-20"
   >
     <div class="container max-w-3xl">
       {#if loading}
