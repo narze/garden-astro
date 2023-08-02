@@ -6,19 +6,19 @@ import Search from "./Search.svelte"
 import WebringIcon from "./WebringIcon.astro"
 ---
 
-<header class="overflow-x-hidden">
-  <nav
-    class="container flex justify-between my-4 items-center text-lg w-screen"
-  >
-    <h2 class="font-bold flex gap-2 items-center">
-      <a href="/">{SITE_TITLE}</a>
-      <WebringIcon />
-    </h2>
-    <div class="flex gap-2 my-2 items-center">
-      <Search client:load />
-      {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
-      <HeaderLink href="/second-brain">Entries</HeaderLink>
-      <ThemeSwitch client:only />
-    </div>
-  </nav>
+<header class="w-full overflow-x-hidden">
+  <div class="w-screen">
+    <nav class="container flex justify-between my-4 items-center text-lg">
+      <h2 class="font-bold flex gap-2 items-center">
+        <a href="/">{SITE_TITLE}</a>
+        <WebringIcon />
+      </h2>
+      <div class="flex gap-2 my-2 items-center">
+        <Search client:load />
+        {DEV && <HeaderLink href="/blog">Blog (Dev)</HeaderLink>}
+        <HeaderLink href="/second-brain">Entries</HeaderLink>
+        <ThemeSwitch client:only />
+      </div>
+    </nav>
+  </div>
 </header>
