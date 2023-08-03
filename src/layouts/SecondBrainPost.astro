@@ -2,6 +2,7 @@
 import type { CollectionEntry } from "astro:content"
 import FormattedDate from "../components/FormattedDate.astro"
 import Layout from "./Layout.astro"
+import Giscus from "@giscus/svelte"
 
 type Props = CollectionEntry<"second-brain">["data"]
 
@@ -73,6 +74,24 @@ const { slug } = Astro.params
       <div>
         <slot />
       </div>
+
+      <!-- Comments -->
+      <hr style="margin-bottom: 1em;" />
+      <Giscus
+        client:load
+        id="comments"
+        repo="narze/garden-astro"
+        repoId="R_kgDOJx2rVQ"
+        category="Announcements"
+        categoryId="DIC_kwDOJx2rVc4CYU7a"
+        mapping="pathname"
+        reactionsEnabled="1"
+        emitMetadata="0"
+        inputPosition="top"
+        theme="preferred_color_scheme"
+        lang="en"
+        loading="lazy"
+      />
     </div>
 
     <div class="mt-8 flex gap-4">
