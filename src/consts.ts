@@ -4,3 +4,4 @@
 export const SITE_TITLE = "narze's garden"
 export const SITE_DESCRIPTION = "My notes & stuff"
 export const DEV = process.env.NODE_ENV === "development"
+export const PAGE_SIZE = 20

@@ -1,0 +1,69 @@
+---
+import { getCollection } from "astro:content"
+
+import Layout from "../../layouts/Layout.astro"
+import FormattedDate from "../../components/FormattedDate.astro"
+import { DEV, PAGE_SIZE } from "../../consts"
+
+export async function getStaticPaths({ paginate }) {
+  const posts = (
+    await getCollection("second-brain", ({ data }) => {
+      return DEV ? true : data.draft !== true
+    })
+  ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+
+  return paginate(posts, { pageSize: PAGE_SIZE })
+}
+// All paginated data is passed on the "page" prop
+const { page } = Astro.props
+---
+
+<Layout>
+  <section class="container prose prose-xl dark:prose-invert">
+    <h2>Page {page.currentPage}</h2>
+
+    <div class="flex flex-col gap-4 md:gap-2">
+      {
+        page.data.map((post) => (
+          <div class="flex justify-between items-center">
+            <span>
+              {post.data.draft ? "(Draft)" : null}{" "}
+              <a
+                href={`/${post.slug}/`}
+                class="no-underline"
+                transition:name={`entry-${post.slug}`}
+              >
+                {post.data.title}
+              </a>
+            </span>
+            <small>
+              <FormattedDate date={post.data.date} />
+            </small>
+          </div>
+        ))
+      }
+    </div>
+
+    <nav class="flex justify-between mt-8">
+      {
+        page.url.prev ? (
+          <a href={page.url.prev} class="no-underline">
+            ← Prev
+          </a>
+        ) : (
+          <div />
+        )
+      }
+      <span>{page.currentPage}</span>
+      {
+        page.url.next ? (
+          <a href={page.url.next} class="no-underline">
+            Next →
+          </a>
+        ) : (
+          <div />
+        )
+      }
+    </nav>
+  </section>
+</Layout>
