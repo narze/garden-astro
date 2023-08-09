@@ -13,20 +13,44 @@ const posts = (
 ---
 
 <Layout>
+  <!-- <head>
+		<BaseHead title={title} description={description} />
+		<style>
+			.title {
+				font-size: 2em;
+				margin: 0.25em 0 0;
+			}
+			hr {
+				border-top: 1px solid #ddd;
+				margin: 1rem 0;
+			}
+			.last-updated-on {
+				font-style: italic;
+			}
+		</style>
+	</head> -->
   <section class="container prose prose-xl dark:prose-invert">
     <h2>Recent Entries</h2>
-    <ul class="mt-8">
+    <div class="flex flex-col gap-4 md:gap-2">
       {
         posts.map((post) => (
-          <li>
-            {post.data.draft ? "(Draft)" : null}{" "}
-            <a href={`/${post.slug}/`} transition:name={`entry-${post.slug}`}>{post.data.title}</a>
+          <div class="flex justify-between items-center">
+            <span>
+              {post.data.draft ? "(Draft)" : null}{" "}
+              <a
+                href={`/${post.slug}/`}
+                class="no-underline"
+                transition:name={`entry-${post.slug}`}
+              >
+                {post.data.title}
+              </a>
+            </span>
             <small>
               <FormattedDate date={post.data.date} />
             </small>
-          </li>
+          </div>
         ))
       }
-    </ul>
+    </div>
   </section>
 </Layout>
