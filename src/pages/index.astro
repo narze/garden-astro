@@ -3,7 +3,7 @@ import { getCollection } from "astro:content"
 
 import Layout from "../layouts/Layout.astro"
 import FormattedDate from "../components/FormattedDate.astro"
-import { DEV } from "../consts"
+import { DEV, PAGE_SIZE } from "../consts"
 
 const posts = (
   await getCollection("second-brain", ({ data }) => {
@@ -33,7 +33,7 @@ const posts = (
     <h2>Recent Entries</h2>
     <div class="flex flex-col gap-4 md:gap-2">
       {
-        posts.map((post) => (
+        posts.slice(0, PAGE_SIZE).map((post) => (
           <div class="flex justify-between items-center">
             <span>
               {post.data.draft ? "(Draft)" : null}{" "}
@@ -52,5 +52,15 @@ const posts = (
         ))
       }
     </div>
+
+    {
+      posts.length > PAGE_SIZE && (
+        <nav class="flex justify-end mt-8">
+          <a href={"/page/2"} class="no-underline">
+            Next →
+          </a>
+        </nav>
+      )
+    }
   </section>
 </Layout>
