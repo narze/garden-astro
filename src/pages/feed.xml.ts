@@ -1,13 +1,12 @@
 import rss from "@astrojs/rss"
 import { getCollection } from "astro:content"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts"
-import { DEV } from "../consts"
 import type { APIRoute } from "astro"
 
 export const get: APIRoute = async (context) => {
   const entries = (
     await getCollection("second-brain", ({ data }) => {
-      return DEV ? true : data.draft !== true
+      return data.draft !== true && data.no_feed !== true
     })
   ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 

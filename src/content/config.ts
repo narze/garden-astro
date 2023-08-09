@@ -35,8 +35,10 @@ const secondBrain = defineCollection({
       .transform((val) => new Date(val)),
     updated: z
       .string()
+      .or(z.date())
       .optional()
       .transform((str) => (str ? new Date(str) : undefined)),
+    no_feed: z.boolean().optional(),
     draft: z.boolean().optional(),
     filepath: z.string(), // Added from add-filepath plugin
     tags: z
