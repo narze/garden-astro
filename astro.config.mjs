@@ -32,7 +32,4 @@ export default defineConfig({
   markdown: {
     remarkPlugins: [prependImageSrcPlugin],
   },
-  experimental: {
-    viewTransitions: true,
-  },
 })
