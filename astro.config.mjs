@@ -9,7 +9,10 @@ function prependImageSrcPlugin() {
   return (tree) => {
     function visit(node) {
       if (node.type === "image" && node.url) {
-        node.url = `/images/${node.url}`
+        // if node.url does not have scheme, prepend with /images/
+        if (!node.url.startsWith("http")) {
+          node.url = `/images/${node.url}`
+        }
       }
       if (node.children) {
         node.children.forEach(visit)
@@ -31,8 +34,5 @@ export default defineConfig({
   ],
   markdown: {
     remarkPlugins: [prependImageSrcPlugin],
-  },
-  experimental: {
-    viewTransitions: true,
   },
 })

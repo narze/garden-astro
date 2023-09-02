@@ -22,7 +22,7 @@ test("internal links and images are working", async ({ page }) => {
       break
     }
 
-    if (visited.has(link) || link.includes("localhost:3000/blog")) {
+    if (visited.has(link) || link.includes("localhost:4321/blog")) {
       continue
     }
 
@@ -53,7 +53,7 @@ test("internal links and images are working", async ({ page }) => {
     const images = await locator.evaluateAll((imgs: HTMLImageElement[]) =>
       imgs
         .map((img) => img.src)
-        .filter((src) => src.startsWith("http://localhost:3000"))
+        .filter((src) => src.startsWith("http://localhost:4321"))
     )
 
     for (const imageSrc of images) {
@@ -73,7 +73,7 @@ async function getInternalLinks(page: Page) {
   return await page.evaluate(() => {
     return Array.from(document.links)
       .map((item) => item.href)
-      .filter((href) => href.startsWith("http://localhost:3000"))
+      .filter((href) => href.startsWith("http://localhost:4321"))
   })
 }
 
