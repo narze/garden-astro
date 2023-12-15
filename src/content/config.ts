@@ -17,7 +17,11 @@ const blog = defineCollection({
     heroImage: z.string().optional(),
     draft: z.boolean().optional(),
     filepath: z.string().optional(), // Added from add-filepath plugin
-    tags: z.array(z.string().or(z.null())).optional(),
+    tags: z
+      .array(z.any())
+      .default([])
+      .nullable()
+      .transform((arr) => (arr ? arr.map((item) => String(item)) : [])),
   }),
 })
 
@@ -42,18 +46,25 @@ const secondBrain = defineCollection({
     draft: z.boolean().optional(),
     filepath: z.string(), // Added from add-filepath plugin
     tags: z
-      .array(
-        z
-          .string()
-          .refine(
-            (tag) => !/\s/.test(tag),
-            (tag) => ({
-              message: `Tag "${tag}" cannot include whitespaces`,
-            })
-          )
-          .or(z.null())
-      )
-      .optional(),
+      .array(z.any())
+      .nullable()
+      .default([])
+      .transform((arr) => (arr ? arr.map((item) => String(item).trim()) : []))
+      .refine(
+        (arr) =>
+          arr.every(
+            (item) =>
+              z
+                .string()
+                .refine((value) => !/\s/.test(value), {
+                  message: "String must not contain whitespaces",
+                })
+                .safeParse(item).success
+          ),
+        {
+          message: "Array elements must not contain whitespaces",
+        }
+      ),
   }),
 })
 

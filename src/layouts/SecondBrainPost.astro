@@ -36,7 +36,7 @@ const { slug } = Astro.params
 
       <!-- Tags -->
       {
-        tags && tags.length && (
+        tags && tags.length ? (
           <div class="flex gap-1">
             {tags.map(
               (tag) =>
@@ -50,6 +50,8 @@ const { slug } = Astro.params
                 )
             )}
           </div>
+        ) : (
+          ""
         )
       }
 

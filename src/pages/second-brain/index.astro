@@ -34,7 +34,9 @@ const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
       {
         secondBrainPosts.map((post) => (
           <li>
-            <a href={`/${post.slug}/`} transition:name={`entry-${post.slug}`}>{post.data.title || post.id}</a>
+            <a href={`/${post.slug}/`} transition:name={`entry-${post.slug}`}>
+              {post.data.title || post.id}
+            </a>
           </li>
         ))
       }
