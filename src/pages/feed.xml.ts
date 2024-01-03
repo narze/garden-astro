@@ -3,7 +3,7 @@ import { getCollection } from "astro:content"
 import { SITE_TITLE, SITE_DESCRIPTION } from "../consts"
 import type { APIRoute } from "astro"
 
-export const get: APIRoute = async (context) => {
+export const GET: APIRoute = async (context) => {
   const entries = (
     await getCollection("second-brain", ({ data }) => {
       return data.draft !== true && data.no_feed !== true

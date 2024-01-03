@@ -1,1 +1,1 @@
-export { get } from "./feed.xml"
+export { GET } from "./feed.xml"
