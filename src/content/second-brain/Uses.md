@@ -9,6 +9,11 @@ filepath: src/content/second-brain/Uses.md
 
 Everything I use.
 
+# AI
+
+*   [ChatGPT](https://chatgpt.com)
+*   [Continue](https://www.continue.dev)
+
 ## Coding
 
 *   [Dash](https://kapeli.com/dash) - Offline code & API documentation
@@ -124,4 +129,4 @@ aka. Honorable mentions, and why I don't use them anymore
 *   [Time Out](https://setapp.com/apps/time-out) - Hooks with Sessions to block screen on Pomodoro breaks. I can control myself now to screen blocking is not necessary anymore.
 *   [Notion](https://notion.so) - Too slow to use, and my current team switched to Jira.
 
-(Updated: 20240929-171307)
+(Updated: 20240929-172914)
