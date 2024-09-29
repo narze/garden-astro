@@ -20,7 +20,7 @@ pnpm-debug.log*
 .DS_Store
 
 /tmp
-/src/content/second-brain
+/src/content/second-brain/local
 /public/images/
 /test-results/
 /playwright-report/
