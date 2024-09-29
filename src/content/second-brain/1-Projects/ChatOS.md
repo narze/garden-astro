@@ -51,7 +51,7 @@ pnpm run dev
 
 ChatOS.excalidraw
 
-![ChatOS.excalidraw](Excalidraw.priv/ChatOS.excalidraw.svg)
+![ChatOS.excalidraw](Excalidraw/ChatOS.excalidraw.svg)
 %%🖋 Edit in Excalidraw, and the dark exported image%%
 
 ***

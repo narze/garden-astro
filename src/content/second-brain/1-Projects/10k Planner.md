@@ -28,5 +28,5 @@ Architecture
 
 # Mobile Design
 
-![10k Planner.excalidraw](Excalidraw.priv/10k%20Planner.excalidraw.svg)
+![10k Planner.excalidraw](Excalidraw/10k%20Planner.excalidraw.svg)
 10k Planner.excalidraw
