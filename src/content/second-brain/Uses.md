@@ -97,6 +97,8 @@ Everything I use.
 *   Wacaco Picopresso
 *   [Kingrinder K3](https://www.kingrinder.com)
 *   [Timemore Black Mirror Basic+](https://en.timemore.com/taimochanpin/heijingdianzicheng/heijingbasicdianzicheng)
+*   Apresso A1 coffee grinder
+*   Cafelat Robot
 
 ## Previously used
 
@@ -121,3 +123,5 @@ aka. Honorable mentions, and why I don't use them anymore
 *   [Timing](https://setapp.com/apps/timing) - Time tracking app. It eats Gigabytes of space when I use it for 2-3 years.
 *   [Time Out](https://setapp.com/apps/time-out) - Hooks with Sessions to block screen on Pomodoro breaks. I can control myself now to screen blocking is not necessary anymore.
 *   [Notion](https://notion.so) - Too slow to use, and my current team switched to Jira.
+
+(Updated: 20240929-170142)
