@@ -38,6 +38,6 @@ localStorage.setItem('encryption-key', key);
 
 ## PBKDF2 References
 
-*   https://en.wikipedia.org/wiki/PBKDF2
-*   https://support.1password.com/pbkdf2
-*   https://stackoverflow.com/questions/11298184/about-how-fast-can-you-brute-force-pbkdf2
+* https://en.wikipedia.org/wiki/PBKDF2
+* https://support.1password.com/pbkdf2
+* https://stackoverflow.com/questions/11298184/about-how-fast-can-you-brute-force-pbkdf2

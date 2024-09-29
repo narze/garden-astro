@@ -53,8 +53,8 @@ See them at https://garden.narze.live/projects
 
 ## Current Projects
 
-1.  ChatOS
-2.  Garden Astro
+1. ChatOS
+2. Garden Astro
 
 ***
 
@@ -114,14 +114,14 @@ Countdown timer
 
 ## Other features
 
-*   Sync chat with Firebase (wip)
-*   Calculator (wip)
-*   IoT, home automation (wip)
-*   API, webhooks (wip)
-*   ChatGPT integration (wip)
-*   Random ~~cunny~~ cat images (wip)
-*   File/image/snippet storage (wip)
-*   etc. (wip, more ideas needed)
+* Sync chat with Firebase (wip)
+* Calculator (wip)
+* IoT, home automation (wip)
+* API, webhooks (wip)
+* ChatGPT integration (wip)
+* Random ~~cunny~~ cat images (wip)
+* File/image/snippet storage (wip)
+* etc. (wip, more ideas needed)
 
 ***
 

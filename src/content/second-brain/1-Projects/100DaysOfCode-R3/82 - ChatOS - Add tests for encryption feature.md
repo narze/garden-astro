@@ -14,5 +14,5 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/82 - ChatOS - Add
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/Omd1xLhVlfA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Fix failing tests
-*   Add tests for encryption feature
+* Fix failing tests
+* Add tests for encryption feature

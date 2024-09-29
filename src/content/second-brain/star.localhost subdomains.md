@@ -14,9 +14,9 @@ I have been developing many projects and a lot of them share the same port `3000
 
 I previously used `lvh.me` subdomains to separate local projects like so:
 
-*   foo.lvh.me
-*   bar.lvh.me:3000
-*   whatever.lvh.me:3000
+* foo.lvh.me
+* bar.lvh.me:3000
+* whatever.lvh.me:3000
 
 All of them will resolves to `localhost`, but if I'm off the grid and I have no network access I'm out of luck.
 

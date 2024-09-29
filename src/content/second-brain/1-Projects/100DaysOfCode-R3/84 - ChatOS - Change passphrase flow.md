@@ -14,8 +14,8 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/84 - ChatOS - Cha
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/LupDIRHeDZ0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Change passphrase
-    *   Generate key
-    *   Decrypt message with old key
-    *   Re-encrypt message with new key
-    *   Batch update Firestore
+* Change passphrase
+  * Generate key
+  * Decrypt message with old key
+  * Re-encrypt message with new key
+  * Batch update Firestore

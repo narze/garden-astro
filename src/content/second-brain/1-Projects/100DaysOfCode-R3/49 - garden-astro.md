@@ -10,9 +10,9 @@ tags:
 filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/49 - garden-astro.md
 ---
 
-*   List recent entries
-*   Support `.mdx` & `.svx`
-    *   <a href="/mdx-test">Test page</a>
-*   Update post layout
-*   Add Svelte integration
-    *   `pnpm astro add svelte`
+* List recent entries
+* Support `.mdx` & `.svx`
+  * <a href="/mdx-test">Test page</a>
+* Update post layout
+* Add Svelte integration
+  * `pnpm astro add svelte`

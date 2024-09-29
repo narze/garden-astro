@@ -11,12 +11,12 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/51 - open-alc-map
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/QX6btbNeoBQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Upgrade to Svelte v4
-*   Move data to yaml format
-    *   Read file in raw format `import data from "./file.yaml?raw"`
-    *   Use `yaml` package to parse `parse(data)`
-*   Change logo to circle
-    *   Use svg `mask`
+* Upgrade to Svelte v4
+* Move data to yaml format
+  * Read file in raw format `import data from "./file.yaml?raw"`
+  * Use `yaml` package to parse `parse(data)`
+* Change logo to circle
+  * Use svg `mask`
 
 ```html
 <image
@@ -33,10 +33,10 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/51 - open-alc-map
 </mask>
 ```
 
-*   Show data on click
-    *   Use `<dialog>` HTML tag
-    *   Handle clicking outside the dialog to close, however got Typescript error on implementation
-    *   Declare custom attribute typing in a separate .d.ts file [ref.](https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-using-an-attributeevent-on-a-dom-element-and-it-throws-a-type-error)
+* Show data on click
+  * Use `<dialog>` HTML tag
+  * Handle clicking outside the dialog to close, however got Typescript error on implementation
+  * Declare custom attribute typing in a separate .d.ts file [ref.](https://github.com/sveltejs/language-tools/blob/master/docs/preprocessors/typescript.md#im-using-an-attributeevent-on-a-dom-element-and-it-throws-a-type-error)
 
 ```typescript
 declare namespace svelteHTML {
@@ -46,7 +46,7 @@ declare namespace svelteHTML {
 }
 ```
 
-*   Add more entries
+* Add more entries
 
 As there are more entries, will have to adjust D3 force simulation to make them distribute more evenly
 

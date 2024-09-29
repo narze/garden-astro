@@ -18,9 +18,9 @@ I plan to replace Open Graph Image of each page in this website, since now it's 
 
 There are many solutions, one of them is to take a screenshot of the page and use it as the OG image. The popular idea is to use Puppeteer with Serverless Function like AWS Lambda or Vercel. Here are the ones that I found and try to copy™️ it and host on my Vercel account.
 
-*   https://github.com/choraria/pptr-io
-*   https://github.com/vijayhardaha/webscreenshot.now.sh
-*   https://github.com/dtinth/personal-puppeteer
+* https://github.com/choraria/pptr-io
+* https://github.com/vijayhardaha/webscreenshot.now.sh
+* https://github.com/dtinth/personal-puppeteer
 
 By the way, as I try to run it I found some blockers, such as Vercel has function size limit at 50mb. So I have to use `chrome-aws-lambda` like everyone did previously.
 
@@ -48,6 +48,6 @@ I'll learn how to use Google Cloud Run soon
 
 References:
 
-*   https://gist.github.com/kettanaito/56861aff96e6debc575d522dd03e5725
-*   https://github.com/orgs/vercel/discussions/103
-*   https://github.com/dtinth/pptraas
+* https://gist.github.com/kettanaito/56861aff96e6debc575d522dd03e5725
+* https://github.com/orgs/vercel/discussions/103
+* https://github.com/dtinth/pptraas

@@ -15,8 +15,8 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/85 - Update narze
 
 https://github.com/narze/resume
 
-*   Change to SvelteKit v1.0 (Replace the project with newly created SvelteKit)
-*   Update `HideToggle` which mutates parent element directly to component with slot
+* Change to SvelteKit v1.0 (Replace the project with newly created SvelteKit)
+* Update `HideToggle` which mutates parent element directly to component with slot
 
 Before
 

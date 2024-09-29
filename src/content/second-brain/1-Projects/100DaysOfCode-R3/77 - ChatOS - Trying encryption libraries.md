@@ -18,24 +18,24 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/77 - ChatOS - Try
 
 ## Libraries
 
-*   **Themis** https://www.cossacklabs.com/themis [Github](https://github.com/cossacklabs/themis)
-    *   Bear app case study
-*   **TweetNaCl.js** https://www.npmjs.com/package/tweetnacl
-    *   https://tweetnacl.js.org/#/box
+* **Themis** https://www.cossacklabs.com/themis [Github](https://github.com/cossacklabs/themis)
+  * Bear app case study
+* **TweetNaCl.js** https://www.npmjs.com/package/tweetnacl
+  * https://tweetnacl.js.org/#/box
 
 ## Resources
 
-*   Keybase Book - Crypto Chat https://book.keybase.io/docs/chat/crypto
-*   \[Google Cloud - Security Key Management]\(<https://cloud.google.com/security-key-management>
-*   [Kerckhoffs' Principle](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle) -
+* Keybase Book - Crypto Chat https://book.keybase.io/docs/chat/crypto
+* \[Google Cloud - Security Key Management]\(<https://cloud.google.com/security-key-management>
+* [Kerckhoffs' Principle](https://en.wikipedia.org/wiki/Kerckhoffs%27s_principle) -
 
 Key features to use on ChatOS:
 
-*   Works on browser
-*   User can choose any passphrase, long or short
-*   End-to-end encryption (Firebase admin cannot decrypt the content)
-*   Preferrably 1-key
-*   Not too slow
+* Works on browser
+* User can choose any passphrase, long or short
+* End-to-end encryption (Firebase admin cannot decrypt the content)
+* Preferrably 1-key
+* Not too slow
 
 Themis has wasm port - need to append `?url` when imported. https://vitejs.dev/guide/features.html#webassembly
 

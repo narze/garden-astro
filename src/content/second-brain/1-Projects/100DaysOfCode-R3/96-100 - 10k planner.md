@@ -27,8 +27,8 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/96-100 - 10k plan
 
 Problems found:
 
-*   [Cannot setup multiple db providers in Prisma anymore](https://github.com/prisma/prisma/issues/3834) (sqlite in dev, postgres in prod)
-    *   \[ ] Change to Cockroachdb on both dev & prod
+* [Cannot setup multiple db providers in Prisma anymore](https://github.com/prisma/prisma/issues/3834) (sqlite in dev, postgres in prod)
+  * \[ ] Change to Cockroachdb on both dev & prod
 
 \#98 - Setup CockroachDB
 
@@ -36,7 +36,7 @@ Problems found:
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/I6FJ1GHZ_7E" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Start Single-node cluster for development https://www.cockroachlabs.com/docs/stable/start-a-local-cluster-in-docker-linux#start-a-single-node-cluster
+* Start Single-node cluster for development https://www.cockroachlabs.com/docs/stable/start-a-local-cluster-in-docker-linux#start-a-single-node-cluster
 
 <details><summary>Docker method</summary>
 
@@ -60,19 +60,19 @@ docker run -d \
   --insecure
 ```
 
-*   Check logs
+* Check logs
 
 ```shell
 docker exec -it roach-single grep 'node starting' /cockroach/cockroach-data/logs/cockroach.log -A 11
 ```
 
-*   Connect
+* Connect
 
 ```shell
 docker exec -it roach-single ./cockroach sql --url="postgresql://root@roach-single:26257/defaultdb" --insecure
 ```
 
-*   Stop (with 5 min grace period)
+* Stop (with 5 min grace period)
 
 ```shell
 docker stop -t 300 roach-single
@@ -94,8 +94,8 @@ cockroach start-single-node --insecure --store=/tmp/cockroach-data # --backgroun
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/SXVGqOivcN0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Add [autocomplete component](https://www.skeleton.dev/components/autocomplete)
-*   Set API cache to 60s using [`setHeaders`](https://kit.svelte.dev/docs/load#headers)
+* Add [autocomplete component](https://www.skeleton.dev/components/autocomplete)
+* Set API cache to 60s using [`setHeaders`](https://kit.svelte.dev/docs/load#headers)
 
 # 100
 
@@ -103,6 +103,6 @@ cockroach start-single-node --insecure --store=/tmp/cockroach-data # --backgroun
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/XyiwJUC4QYc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   Add overall stats page
-*   Add Google Analytics
-*   Add fly transitions on cards
+* Add overall stats page
+* Add Google Analytics
+* Add fly transitions on cards

@@ -139,9 +139,9 @@ Now you can use `worker.showNotification` to send notifications. But before that
 
 See the working code (at the time of this writing) here:
 
-*   Component - [Timer.svelte](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/commands/components/Timer.svelte)
-*   `timer` chat command - [timer.ts](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/commands/timer.ts)
-*   Timer worker - [timer.worker.ts](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/workers/timer.worker.ts)
+* Component - [Timer.svelte](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/commands/components/Timer.svelte)
+* `timer` chat command - [timer.ts](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/commands/timer.ts)
+* Timer worker - [timer.worker.ts](https://github.com/narze/chat-os/blob/91f6ca25ee884f97e837793ff75170488c4ecf2a/src/lib/workers/timer.worker.ts)
 
 Try the timer command on [ChatOS](https://chat.narze.live) by typing `timer mm:ss`
 
@@ -151,12 +151,12 @@ The notification ![](1-Projects/100DaysOfCode-R3/attachments/57%20-%20ChatOS%20-
 
 ## Possible improvements
 
-*   Play around with [Notification properties](https://developer.mozilla.org/en-US/docs/Web/API/Notification#instance_properties), adding icon, custom sound, timestamp, etc.
-*   Refactor notification related code so that other commands can use it as well
-*   Support [Web Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API), so that the tab can be closed but notification still can be sent to user (This may need persisting user...)
+* Play around with [Notification properties](https://developer.mozilla.org/en-US/docs/Web/API/Notification#instance_properties), adding icon, custom sound, timestamp, etc.
+* Refactor notification related code so that other commands can use it as well
+* Support [Web Push API](https://developer.mozilla.org/en-US/docs/Web/API/Push_API), so that the tab can be closed but notification still can be sent to user (This may need persisting user...)
 
 ## References
 
-*   https://blog.atulr.com/web-notifications
-*   https://kit.svelte.dev/docs/service-workers
-*   https://vitejs.dev/guide/assets.html#importing-script-as-a-worker
+* https://blog.atulr.com/web-notifications
+* https://kit.svelte.dev/docs/service-workers
+* https://vitejs.dev/guide/assets.html#importing-script-as-a-worker

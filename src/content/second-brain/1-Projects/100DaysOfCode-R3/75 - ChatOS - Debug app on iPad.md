@@ -48,8 +48,8 @@ pnpm run dev --host 0.0.0.0
 
 ## Changes
 
-*   Check for `window.Notification` presence in timer command, since mobile Chrome & Safari [does not support Notification API yet](https://developer.mozilla.org/en-US/docs/Web/API/notification)
-*   Turn off [auto capitalization](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize), so that the mobile keyboard will not use auto-capitalization
+* Check for `window.Notification` presence in timer command, since mobile Chrome & Safari [does not support Notification API yet](https://developer.mozilla.org/en-US/docs/Web/API/notification)
+* Turn off [auto capitalization](https://developer.mozilla.org/en-US/docs/Web/HTML/Global_attributes/autocapitalize), so that the mobile keyboard will not use auto-capitalization
 
 Now ChatOS works on iPad!
 

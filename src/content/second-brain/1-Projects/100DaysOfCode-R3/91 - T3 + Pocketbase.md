@@ -15,7 +15,7 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/91 - T3 + Pocketb
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/WTUFwuZfcWw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   SSR Integration guide for Next.js, SvelteKit, etc. https://github.com/pocketbase/js-sdk#ssr-integration
+* SSR Integration guide for Next.js, SvelteKit, etc. https://github.com/pocketbase/js-sdk#ssr-integration
 
 https://github.com/narze/t3-pocketbase
 https://t3-pocketbase.vercel.app

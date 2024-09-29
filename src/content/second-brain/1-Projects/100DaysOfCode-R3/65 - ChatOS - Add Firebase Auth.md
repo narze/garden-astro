@@ -17,12 +17,12 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/65 - ChatOS - Add
 
 ## Setup Firebase App
 
-1.  Create new Firebase project https://console.firebase.google.com
-2.  Enable Google sign in method
+1. Create new Firebase project https://console.firebase.google.com
+2. Enable Google sign in method
 
 ![](1-Projects/100DaysOfCode-R3/attachments/65%20-%20ChatOS%20-%20Add%20Firebase%20Auth.png)
 
-3.  Register an app within the project, get the initialization code with configuration.
+3. Register an app within the project, get the initialization code with configuration.
 
 ```js
 // Import the functions you need from the SDKs you need
@@ -48,7 +48,7 @@ const app = initializeApp(firebaseConfig);
 // const analytics = getAnalytics(app); // Don't use
 ```
 
-4.  Add Auth loader, and export
+4. Add Auth loader, and export
 
 ```js
 import { getAuth } from "firebase/auth";
@@ -58,7 +58,7 @@ const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 ```
 
-5.  Import `auth` in a SvelteKit page to test
+5. Import `auth` in a SvelteKit page to test
 
 ```html
 <script lang="ts">
@@ -106,7 +106,7 @@ export const auth = getAuth(app);
 
 You can also choose to sign in with redirection instead with `signInWithRedirect`. Refer to [Firebase Documentation](https://firebase.google.com/docs/auth/web/google-signin)
 
-6.  Load user in `+layout.ts` by wrapping `auth.onAuthStateChanged` and use it in `load` function
+6. Load user in `+layout.ts` by wrapping `auth.onAuthStateChanged` and use it in `load` function
 
 ```js
 import { auth } from '../lib/firebase';
@@ -130,7 +130,7 @@ export const load: LayoutLoad = async (_event) => {
 };
 ```
 
-7.  The user will be available through all pages as `data: PageData` using the layout
+7. The user will be available through all pages as `data: PageData` using the layout
 
 ```html
 <script lang="ts">

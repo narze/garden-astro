@@ -52,14 +52,16 @@ The search result is not ideal since it does not strip some html tags, will deal
 
 \#issue Degit blows up
 
-    09:11:04 PM [build] Waiting for the github-fetch integration...
-     error   zlib: unexpected end of file
-      File:
-        /Users/narze/Code/github.com/narze/garden-astro/node_modules/.pnpm/degit@2.8.4/node_modules/degit/dist/index-688c5d50.js:1322:22
-      Code:
-        1321 |       Buffer.concat = OriginalBufferConcat;
-        > 1322 |       this[_onError](new ZlibError(err));
-               |                      ^
+```
+09:11:04 PM [build] Waiting for the github-fetch integration...
+ error   zlib: unexpected end of file
+  File:
+    /Users/narze/Code/github.com/narze/garden-astro/node_modules/.pnpm/degit@2.8.4/node_modules/degit/dist/index-688c5d50.js:1322:22
+  Code:
+    1321 |       Buffer.concat = OriginalBufferConcat;
+    > 1322 |       this[_onError](new ZlibError(err));
+           |                      ^
+```
 
 Solution : Clear degit cache `rm -rf ~/.degit` [ref.](https://github.com/Rich-Harris/degit/issues/313) (Cannot use `tiged` since it does not support typescript)
 

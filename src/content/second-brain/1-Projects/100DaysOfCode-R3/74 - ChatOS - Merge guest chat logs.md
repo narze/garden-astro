@@ -20,6 +20,6 @@ I also want to add more tests to ensure that login is working and user can be ab
 
 ## Changes
 
-*   Add login flow tests.
-*   Add [`wait-on`](https://www.npmjs.com/package/wait-on)  to wait for Firebase Emulator port on Github Actions
-*   Sync guest chat logs to user by clicking `Sync Chat` ![](1-Projects/100DaysOfCode-R3/attachments/74%20-%20ChatOS%20-%20Merge%20guest%20chat%20logs.png)
+* Add login flow tests.
+* Add [`wait-on`](https://www.npmjs.com/package/wait-on)  to wait for Firebase Emulator port on Github Actions
+* Sync guest chat logs to user by clicking `Sync Chat` ![](1-Projects/100DaysOfCode-R3/attachments/74%20-%20ChatOS%20-%20Merge%20guest%20chat%20logs.png)

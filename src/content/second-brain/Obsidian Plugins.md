@@ -12,9 +12,9 @@ filepath: src/content/second-brain/Obsidian Plugins.md
 
 Using
 
-*   Templater
-*   Obsidian Git
+* Templater
+* Obsidian Git
 
 To Evaluate
 
-*   https://github.com/marcusolsson/obsidian-projects
+* https://github.com/marcusolsson/obsidian-projects

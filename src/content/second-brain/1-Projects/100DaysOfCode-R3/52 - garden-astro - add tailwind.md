@@ -13,9 +13,9 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/52 - garden-astro
 
 <iframe width="100%" style="aspect-ratio: 16 / 9;" src="https://www.youtube.com/embed/UQwJ9h1wR3Q" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-*   `pnpm astro add tailwind`
-*   `pnpm install -D @tailwindcss/typography`
-*   Add dark mode with switch [ref.](https://www.kevinzunigacuellar.com/blog/dark-mode-in-astro)
+* `pnpm astro add tailwind`
+* `pnpm install -D @tailwindcss/typography`
+* Add dark mode with switch [ref.](https://www.kevinzunigacuellar.com/blog/dark-mode-in-astro)
 
 ```html
 <script is:inline>
@@ -38,7 +38,7 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/52 - garden-astro
 </script>
 ```
 
-*   Wrap everything into layout
+* Wrap everything into layout
 
 ```html
 <!DOCTYPE html>
@@ -57,7 +57,7 @@ filepath: src/content/second-brain/1-Projects/100DaysOfCode-R3/52 - garden-astro
 </html>
 ```
 
-*   Dark theme switcher (Svelte)
+* Dark theme switcher (Svelte)
 
 ```html
 <script lang="ts">

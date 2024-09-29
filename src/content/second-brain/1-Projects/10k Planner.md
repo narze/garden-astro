@@ -16,10 +16,10 @@ Result page
 ![|300](1-Projects/attachments/10k%20Planner.png)
 Architecture
 
-*   CockroachDB
-*   SvelteKit (Maybe with o7-app or [trpc-sveltekit](https://icflorescu.github.io/trpc-sveltekit/))
-*   Tailwind & [Flowbite-Svelte](https://flowbite-svelte.com) or [Skeleton UI](https://skeleton.dev)
-    *   Mobile-first design
+* CockroachDB
+* SvelteKit (Maybe with o7-app or [trpc-sveltekit](https://icflorescu.github.io/trpc-sveltekit/))
+* Tailwind & [Flowbite-Svelte](https://flowbite-svelte.com) or [Skeleton UI](https://skeleton.dev)
+  * Mobile-first design
 
 # Design draft
 

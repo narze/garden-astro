@@ -20,10 +20,10 @@ Originally @srakrn's idea, I think it's a fun idea to work on in Sunday night...
 
 ## Technologies
 
-*   SvelteKit
-*   Tailwind
-*   [lowdb](https://github.com/typicode/lowdb)
-*   [Svelte Carousel](https://vadimkorr.github.io/svelte-carousel)
+* SvelteKit
+* Tailwind
+* [lowdb](https://github.com/typicode/lowdb)
+* [Svelte Carousel](https://vadimkorr.github.io/svelte-carousel)
 
 The implementation is simple, just a form to submit data, and another page to load those data and display. [Code](https://github.com/narze/live-guestbook)
 
