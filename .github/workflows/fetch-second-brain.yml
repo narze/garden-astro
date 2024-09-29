@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -46,6 +49,14 @@ jobs:
           git config --global user.email "notbarze@users.noreply.github.com"
           git config --global user.name "narze's bot"
 
+          # Get the current branch name
+          BRANCH_NAME=$(git symbolic-ref --short HEAD || echo "")
+
+          # If BRANCH_NAME is empty, we're in detached HEAD state, so get the branch name from GitHub context
+          if [ -z "$BRANCH_NAME" ]; then
+            BRANCH_NAME=${GITHUB_HEAD_REF:-${GITHUB_REF#refs/heads/}}
+          fi
+
           # Check if there are any changes
           if [[ -n "$(git status --porcelain)" ]]; then
             # Get list of changed files
@@ -53,10 +64,10 @@ jobs:
 
             # Commit changes
             git add -A
-            git commit -m "Updated: $CHANGED_FILES"
+            git commit -m "Changes: $CHANGED_FILES"
 
             # Push changes
-            git push
+            git push origin HEAD:$BRANCH_NAME
           else
             echo "No changes to commit"
           fi
