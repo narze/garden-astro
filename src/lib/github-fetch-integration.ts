@@ -1,8 +1,9 @@
+import nodePath, { parse, sep } from "node:path"
+import { execSync } from "node:child_process"
+import fs, { copyFileSync } from "node:fs"
 import type { AstroIntegration, AstroConfig } from "astro"
 import { globSync } from "glob"
 import { rimrafSync } from "rimraf"
-import fs, { copyFileSync } from "node:fs"
-import nodePath, { basename, parse, sep } from "node:path"
 import matter from "gray-matter"
 import { extractImageSources } from "./extract-image-sources"
 import { resolveLinks } from "./resolve-links"
@@ -12,7 +13,6 @@ import { Octokit } from "octokit"
 import { PassThrough, Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
 import { Parse, type ReadEntry } from "tar"
-import path from "node:path"
 
 type TarFilter = (path: string, entry: ReadEntry) => boolean
 
@@ -67,7 +67,7 @@ export async function fetchSecondBrain(local: boolean = false) {
 
     function resolveHome(filepath: string): string {
       if (filepath[0] === "~") {
-        return path.join(process.env.HOME!, filepath.slice(1))
+        return nodePath.join(process.env.HOME!, filepath.slice(1))
       }
 
       return filepath
@@ -75,8 +75,63 @@ export async function fetchSecondBrain(local: boolean = false) {
 
     rimrafSync("./tmp/second-brain")
 
-    // Copy files recursively from obsidianPath/** to ./tmp/second-brain
-    fs.cpSync(obsidianPath, "./tmp/second-brain", { recursive: true })
+    // List files in obsidianPath with git, so that ignored files are not copied
+    const files = execSync(
+      `git -C ${obsidianPath} -c core.quotePath=false ls-files`
+    )
+      .toString()
+      .split("\n")
+      .filter((f) => {
+        if (
+          f.length === 0 ||
+          f.startsWith(".") ||
+          f.startsWith("_") ||
+          f.includes("/_") ||
+          f.includes("/.") ||
+          f.includes("/Untitled") ||
+          f.includes("/templates/")
+        ) {
+          console.log("skip", f)
+          return false
+        }
+
+        return true
+      })
+    // .map((f) => {
+    //   // Convert from \NNN shell format to actual string
+    //   return f.replace(/\\(\d{3})/g, (match, octal) => {
+    //     return String.fromCharCode(parseInt(octal, 8))
+    //   })S
+    // })
+
+    console.log({ files, count: files.length })
+    // exit(0)
+    // Copy files to ./tmp/second-brain
+    files.forEach((f) => {
+      // const src = nodePath.join(obsidianPath, f)
+      const src = nodePath.join(obsidianPath, f)
+
+      if (
+        src.startsWith(".") ||
+        src.startsWith("_") ||
+        src.includes("/_") ||
+        src.includes("/.") ||
+        src.includes("/Untitled") ||
+        src.includes("/templates/")
+      ) {
+        console.log("skip", f)
+        return
+      }
+
+      const dest = nodePath.join("./tmp/second-brain", f)
+
+      const destDir = nodePath.dirname(dest)
+      if (!fs.existsSync(destDir)) {
+        fs.mkdirSync(destDir, { recursive: true })
+      }
+
+      fs.cpSync(src, dest)
+    })
   } else {
     console.log("Fetching files from narze/second-brain...")
 
