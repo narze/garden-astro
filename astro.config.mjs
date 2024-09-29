@@ -1,7 +1,7 @@
 import { defineConfig } from "astro/config"
 import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
-import githubFetchIntegration from "./src/lib/github-fetch-integration"
+// import githubFetchIntegration from "./src/lib/github-fetch-integration"
 import svelte from "@astrojs/svelte"
 import tailwind from "@astrojs/tailwind"
 
@@ -28,7 +28,7 @@ export default defineConfig({
   integrations: [
     mdx(),
     sitemap(),
-    githubFetchIntegration(),
+    // githubFetchIntegration(),
     svelte(),
     tailwind(),
   ],
