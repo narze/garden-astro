@@ -1,0 +1,33 @@
+---
+title: "Mdx Test"
+date: 2023-06-27
+slug: mdx-test
+publish: true
+filepath: src/content/second-brain/Mdx Test.mdx
+---
+
+`Math.PI * 2`
+
+<p>Two 🍰 is: {Math.PI * 2}</p>
+
+`<button onClick="alert('hi!')">Click Me</button>`
+
+<div>
+  <button onClick="alert('hi!')">Click Me</button>
+</div>
+
+import Counter from "/src/components/Counter.svelte"
+
+`import Counter from "/src/components/Counter.svelte"`
+
+```svelte
+<script>
+  export let count = 0
+</script>
+
+<button on:click={() => (count += 1)}>Svelte Counter: {count}</button>
+```
+
+<div>
+  <Counter client:load count={1} />
+</div>
