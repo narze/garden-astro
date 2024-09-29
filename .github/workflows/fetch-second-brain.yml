@@ -2,8 +2,8 @@ name: Fetch Second Brain
 on:
   repository_dispatch:
     types: [fetch_second_brain]
-  push:
-    branches: [main, master]
+  # push:
+  #   branches: [main, master]
   pull_request:
     branches: [main, master]
   workflow_dispatch:
