@@ -11,7 +11,8 @@ import { stripHashFromTags } from "./strip-hash-from-tags"
 import { Octokit } from "octokit"
 import { PassThrough, Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
-import tar, { type ReadEntry } from "tar"
+import { Parse, type ReadEntry } from "tar"
+import path from "node:path"
 
 type TarFilter = (path: string, entry: ReadEntry) => boolean
 
@@ -20,7 +21,7 @@ async function* readTar(input: Readable, filter: TarFilter) {
   const entryStream = new PassThrough({ objectMode: true })
   const pipelinePromise = pipeline(
     input,
-    new tar.Parse({
+    new Parse({
       filter,
       onentry: async (entry) => {
         entryStream.write(entry)
@@ -56,79 +57,98 @@ const githubFetchIntegration = (options?: any): AstroIntegration => {
   }
 }
 
-export async function fetchSecondBrain() {
-  console.log("Config done, fetching files from narze/second-brain...")
+export async function fetchSecondBrain(local: boolean = false) {
+  if (local) {
+    console.log("Use files from local Obsidian vault...")
 
-  // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-  const octokit = new Octokit({})
-  const owner = "narze"
-  const repo = "second-brain"
-
-  // return
-  // TODO: Cache downloaded file
-  const downloadResponse = await octokit.rest.repos.downloadTarballArchive({
-    owner,
-    repo,
-    ref: "main",
-  })
-
-  // Write
-  rimrafSync("./tmp/second-brain")
-  fs.mkdirSync("./tmp/second-brain", { recursive: true })
-
-  let data = Buffer.from(downloadResponse.data as ArrayBuffer)
-
-  const passThroughStream = new PassThrough()
-  passThroughStream.end(data)
-
-  const fileFilter: TarFilter = (path, entry) => {
-    if (entry.type === "Directory") return false
-
-    const p = `/${pathWithoutTopmostDir(path)}`
-
-    // Excludes these files:
-    // - Includes #
-    // - Starts with _
-    // - Starts with .
-    // - Untitled files
-    // - Starts with /templates
-
-    if (
-      // p.includes("/#") ||
-      p.includes("/_") ||
-      p.includes("/.") ||
-      p.includes("/Untitled") ||
-      p.startsWith("/templates/")
+    const obsidianPath = resolveHome(
+      `${process.env["OBSIDIAN_PATH"] || "~/obsidian"}`
     )
-      return false
 
-    return true
-  }
+    function resolveHome(filepath: string): string {
+      if (filepath[0] === "~") {
+        return path.join(process.env.HOME!, filepath.slice(1))
+      }
 
-  const pathWithoutTopmostDir = (path: string) => {
-    const pathObj = parse(path)
-    // Split the 'dir' into parts and remove the topmost directory
-    const dirParts = pathObj.dir.split(sep).slice(1)
-    // Join the relevant parts back together
-    return nodePath.join(...dirParts, pathObj.base)
-  }
-
-  for await (const item of readTar(passThroughStream, fileFilter)) {
-    const content = item.content
-    const path = pathWithoutTopmostDir(item.entry.path)
-
-    // Write to file
-    const destinationPath = `./tmp/second-brain/${path}`
-    const destinationDir = nodePath.dirname(destinationPath)
-    if (!fs.existsSync(destinationDir)) {
-      await fs.promises.mkdir(destinationDir, { recursive: true })
+      return filepath
     }
 
-    await fs.promises.writeFile(destinationPath, content)
+    rimrafSync("./tmp/second-brain")
+
+    // Copy files recursively from obsidianPath/** to ./tmp/second-brain
+    fs.cpSync(obsidianPath, "./tmp/second-brain", { recursive: true })
+  } else {
+    console.log("Fetching files from narze/second-brain...")
+
+    // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
+    const octokit = new Octokit({})
+    const owner = "narze"
+    const repo = "second-brain"
+
+    // returns    // TODO: Cache downloaded file
+    const downloadResponse = await octokit.rest.repos.downloadTarballArchive({
+      owner,
+      repo,
+      ref: "main",
+    })
+
+    // Write
+    rimrafSync("./tmp/second-brain")
+    fs.mkdirSync("./tmp/second-brain", { recursive: true })
+
+    let data = Buffer.from(downloadResponse.data as ArrayBuffer)
+
+    const passThroughStream = new PassThrough()
+    passThroughStream.end(data)
+
+    const fileFilter: TarFilter = (path, entry) => {
+      if (entry.type === "Directory") return false
+
+      const p = `/${pathWithoutTopmostDir(path)}`
+
+      // Excludes these files:
+      // - Includes #
+      // - Starts with _
+      // - Starts with .
+      // - Untitled files
+      // - Starts with /templates
+
+      if (
+        // p.includes("/#") ||
+        p.includes("/_") ||
+        p.includes("/.") ||
+        p.includes("/Untitled") ||
+        p.startsWith("/templates/")
+      )
+        return false
+
+      return true
+    }
+
+    const pathWithoutTopmostDir = (path: string) => {
+      const pathObj = parse(path)
+      // Split the 'dir' into parts and remove the topmost directory
+      const dirParts = pathObj.dir.split(sep).slice(1)
+      // Join the relevant parts back together
+      return nodePath.join(...dirParts, pathObj.base)
+    }
+
+    for await (const item of readTar(passThroughStream, fileFilter)) {
+      const content = item.content
+      const path = pathWithoutTopmostDir(item.entry.path)
+
+      // Write to file
+      const destinationPath = `./tmp/second-brain/${path}`
+      const destinationDir = nodePath.dirname(destinationPath)
+      if (!fs.existsSync(destinationDir)) {
+        await fs.promises.mkdir(destinationDir, { recursive: true })
+      }
+
+      await fs.promises.writeFile(destinationPath, content)
+    }
+
+    data = Buffer.from("") // Free memory
   }
-
-  data = Buffer.from("") // Free memory
-
   rimrafSync("./public/images/*", { glob: true })
   rimrafSync("./src/content/second-brain/*", { glob: true })
 
