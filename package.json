@@ -9,6 +9,7 @@
     "dev:search": "astro build && pagefind --source dist --bundle-dir pagefind --serve & open http://localhost:1414",
     "test": "playwright test",
     "start": "astro dev",
+    "fetch": "tsx fetch.ts",
     "build": "run-s -c \"astro build\" build:post",
     "build:post": "pagefind --source dist --bundle-dir pagefind",
     "preview": "astro preview",

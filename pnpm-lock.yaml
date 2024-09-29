@@ -10,7 +10,7 @@ importers:
     dependencies:
       '@astrojs/mdx':
         specifier: ^2.0.3
-        version: 2.0.3(astro@4.0.9)
+        version: 2.0.3(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))
       '@astrojs/rss':
         specifier: ^4.0.1
         version: 4.0.1
@@ -19,13 +19,13 @@ importers:
         version: 3.0.4
       '@astrojs/svelte':
         specifier: ^5.0.3
-        version: 5.0.3(astro@4.0.9)(svelte@4.2.0)(typescript@5.2.2)(vite@5.0.10)
+        version: 5.0.3(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))(svelte@4.2.0)(typescript@5.2.2)(vite@5.0.10(@types/node@20.5.8))
       '@astrojs/tailwind':
         specifier: ^5.1.0
-        version: 5.1.0(astro@4.0.9)(tailwindcss@3.3.3)
+        version: 5.1.0(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))(tailwindcss@3.3.3)
       astro:
         specifier: ^4.0.9
-        version: 4.0.9(typescript@5.2.2)
+        version: 4.0.9(@types/node@20.5.8)(typescript@5.2.2)
       tailwindcss:
         specifier: ^3.3.3
         version: 3.3.3
@@ -1268,11 +1268,8 @@ packages:
     resolution: {integrity: sha512-xlx1yCK2Oc1APsPXDL2LdlNP6+uu8OCDdhOBSVT279M/S+y75O30C2VuD8T2ogdePBBl7PfPF4504tnLgX3zfw==}
     engines: {node: '>=14.16'}
 
-  caniuse-lite@1.0.30001525:
-    resolution: {integrity: sha512-/3z+wB4icFt3r0USMwxujAqRvaD/B7rvGTsKhbhSQErVrJvkZCLhgNLJxU8MevahQVH6hCU9FsHdNUFbiwmE7Q==}
-
-  caniuse-lite@1.0.30001572:
-    resolution: {integrity: sha512-1Pbh5FLmn5y4+QhNyJE9j3/7dK44dGB83/ZMjv/qJk86TvDbjk0LosiZo0i0WB0Vx607qMX9jYrn1VLHCkN4rw==}
+  caniuse-lite@1.0.30001664:
+    resolution: {integrity: sha512-AmE7k4dXiNKQipgn7a2xg558IRqPN3jMQY/rOsbxDhrd0tyChwbITBfiwtnqz8bi2M5mIWbxAYBvk7W7QBUS2g==}
 
   ccount@2.0.1:
     resolution: {integrity: sha512-eyrF0jiFpY+3drT6383f1qhkbGsLSifNAjA61IUjZjmLCWjItY6LB9ft9YhoDgwfmclB2zhu51Lc7+95b8NRAg==}
@@ -3705,12 +3702,12 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  '@astrojs/mdx@2.0.3(astro@4.0.9)':
+  '@astrojs/mdx@2.0.3(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))':
     dependencies:
       '@astrojs/markdown-remark': 4.0.1
       '@mdx-js/mdx': 3.0.0
       acorn: 8.11.3
-      astro: 4.0.9(typescript@5.2.2)
+      astro: 4.0.9(@types/node@20.5.8)(typescript@5.2.2)
       es-module-lexer: 1.4.1
       estree-util-visit: 2.0.0
       github-slugger: 2.0.0
@@ -3740,10 +3737,10 @@ snapshots:
       sitemap: 7.1.1
       zod: 3.22.4
 
-  '@astrojs/svelte@5.0.3(astro@4.0.9)(svelte@4.2.0)(typescript@5.2.2)(vite@5.0.10)':
+  '@astrojs/svelte@5.0.3(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))(svelte@4.2.0)(typescript@5.2.2)(vite@5.0.10(@types/node@20.5.8))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)(vite@5.0.10)
-      astro: 4.0.9(typescript@5.2.2)
+      '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8))
+      astro: 4.0.9(@types/node@20.5.8)(typescript@5.2.2)
       svelte: 4.2.0
       svelte2tsx: 0.6.27(svelte@4.2.0)(typescript@5.2.2)
     transitivePeerDependencies:
@@ -3751,9 +3748,9 @@ snapshots:
       - typescript
       - vite
 
-  '@astrojs/tailwind@5.1.0(astro@4.0.9)(tailwindcss@3.3.3)':
+  '@astrojs/tailwind@5.1.0(astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2))(tailwindcss@3.3.3)':
     dependencies:
-      astro: 4.0.9(typescript@5.2.2)
+      astro: 4.0.9(@types/node@20.5.8)(typescript@5.2.2)
       autoprefixer: 10.4.15(postcss@8.4.29)
       postcss: 8.4.29
       postcss-load-config: 4.0.2(postcss@8.4.29)
@@ -4478,26 +4475,26 @@ snapshots:
   '@rollup/rollup-win32-x64-msvc@4.9.2':
     optional: true
 
-  '@sveltejs/vite-plugin-svelte-inspector@2.0.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.0)(vite@5.0.10)':
+  '@sveltejs/vite-plugin-svelte-inspector@2.0.0(@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8)))(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)(vite@5.0.10)
+      '@sveltejs/vite-plugin-svelte': 3.0.1(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8))
       debug: 4.3.4
       svelte: 4.2.0
-      vite: 5.0.10
+      vite: 5.0.10(@types/node@20.5.8)
     transitivePeerDependencies:
       - supports-color
 
-  '@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.0)(vite@5.0.10)':
+  '@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8))':
     dependencies:
-      '@sveltejs/vite-plugin-svelte-inspector': 2.0.0(@sveltejs/vite-plugin-svelte@3.0.1)(svelte@4.2.0)(vite@5.0.10)
+      '@sveltejs/vite-plugin-svelte-inspector': 2.0.0(@sveltejs/vite-plugin-svelte@3.0.1(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8)))(svelte@4.2.0)(vite@5.0.10(@types/node@20.5.8))
       debug: 4.3.4
       deepmerge: 4.3.1
       kleur: 4.1.5
       magic-string: 0.30.5
       svelte: 4.2.0
       svelte-hmr: 0.15.3(svelte@4.2.0)
-      vite: 5.0.10
-      vitefu: 0.2.5(vite@5.0.10)
+      vite: 5.0.10(@types/node@20.5.8)
+      vitefu: 0.2.5(vite@5.0.10(@types/node@20.5.8))
     transitivePeerDependencies:
       - supports-color
 
@@ -4599,6 +4596,7 @@ snapshots:
       '@typescript-eslint/visitor-keys': 6.5.0
       debug: 4.3.4
       eslint: 8.48.0
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -4626,6 +4624,7 @@ snapshots:
       is-glob: 4.0.3
       semver: 7.5.4
       ts-api-utils: 1.0.2(typescript@5.2.2)
+    optionalDependencies:
       typescript: 5.2.2
     transitivePeerDependencies:
       - supports-color
@@ -4742,7 +4741,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  astro@4.0.9(typescript@5.2.2):
+  astro@4.0.9(@types/node@20.5.8)(typescript@5.2.2):
     dependencies:
       '@astrojs/compiler': 2.3.4
       '@astrojs/internal-helpers': 0.2.1
@@ -4800,8 +4799,8 @@ snapshots:
       tsconfck: 3.0.1(typescript@5.2.2)
       unist-util-visit: 5.0.0
       vfile: 6.0.1
-      vite: 5.0.10
-      vitefu: 0.2.5(vite@5.0.10)
+      vite: 5.0.10(@types/node@20.5.8)
+      vitefu: 0.2.5(vite@5.0.10(@types/node@20.5.8))
       which-pm: 2.1.1
       yargs-parser: 21.1.1
       zod: 3.22.4
@@ -4826,7 +4825,7 @@ snapshots:
   autoprefixer@10.4.15(postcss@8.4.29):
     dependencies:
       browserslist: 4.21.10
-      caniuse-lite: 1.0.30001525
+      caniuse-lite: 1.0.30001664
       fraction.js: 4.3.6
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -4891,14 +4890,14 @@ snapshots:
 
   browserslist@4.21.10:
     dependencies:
-      caniuse-lite: 1.0.30001525
+      caniuse-lite: 1.0.30001664
       electron-to-chromium: 1.4.508
       node-releases: 2.0.13
       update-browserslist-db: 1.0.11(browserslist@4.21.10)
 
   browserslist@4.22.2:
     dependencies:
-      caniuse-lite: 1.0.30001572
+      caniuse-lite: 1.0.30001664
       electron-to-chromium: 1.4.617
       node-releases: 2.0.14
       update-browserslist-db: 1.0.13(browserslist@4.22.2)
@@ -4929,9 +4928,7 @@ snapshots:
 
   camelcase@7.0.1: {}
 
-  caniuse-lite@1.0.30001525: {}
-
-  caniuse-lite@1.0.30001572: {}
+  caniuse-lite@1.0.30001664: {}
 
   ccount@2.0.1: {}
 
@@ -5291,8 +5288,9 @@ snapshots:
       postcss-safe-parser: 6.0.0(postcss@8.4.29)
       postcss-selector-parser: 6.0.13
       semver: 7.5.4
-      svelte: 4.2.0
       svelte-eslint-parser: 0.33.0(svelte@4.2.0)
+    optionalDependencies:
+      svelte: 4.2.0
     transitivePeerDependencies:
       - supports-color
       - ts-node
@@ -7062,20 +7060,23 @@ snapshots:
   postcss-load-config@3.1.4(postcss@8.4.29):
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.29
       yaml: 1.10.2
+    optionalDependencies:
+      postcss: 8.4.29
 
   postcss-load-config@4.0.1(postcss@8.4.29):
     dependencies:
       lilconfig: 2.1.0
-      postcss: 8.4.29
       yaml: 2.3.2
+    optionalDependencies:
+      postcss: 8.4.29
 
   postcss-load-config@4.0.2(postcss@8.4.29):
     dependencies:
       lilconfig: 3.0.0
-      postcss: 8.4.29
       yaml: 2.3.4
+    optionalDependencies:
+      postcss: 8.4.29
 
   postcss-nested@6.0.1(postcss@8.4.29):
     dependencies:
@@ -7629,6 +7630,7 @@ snapshots:
       espree: 9.6.1
       postcss: 8.4.29
       postcss-scss: 4.0.7(postcss@8.4.29)
+    optionalDependencies:
       svelte: 4.2.0
 
   svelte-hmr@0.15.3(svelte@4.2.0):
@@ -7728,7 +7730,7 @@ snapshots:
   ts-interface-checker@0.1.13: {}
 
   tsconfck@3.0.1(typescript@5.2.2):
-    dependencies:
+    optionalDependencies:
       typescript: 5.2.2
 
   tslib@2.6.2: {}
@@ -7934,17 +7936,18 @@ snapshots:
       unist-util-stringify-position: 4.0.0
       vfile-message: 4.0.2
 
-  vite@5.0.10:
+  vite@5.0.10(@types/node@20.5.8):
     dependencies:
       esbuild: 0.19.11
       postcss: 8.4.32
       rollup: 4.9.2
     optionalDependencies:
+      '@types/node': 20.5.8
       fsevents: 2.3.3
 
-  vitefu@0.2.5(vite@5.0.10):
-    dependencies:
-      vite: 5.0.10
+  vitefu@0.2.5(vite@5.0.10(@types/node@20.5.8)):
+    optionalDependencies:
+      vite: 5.0.10(@types/node@20.5.8)
 
   web-namespaces@2.0.1: {}
 
