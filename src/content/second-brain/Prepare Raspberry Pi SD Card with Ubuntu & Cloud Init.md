@@ -8,7 +8,7 @@ filepath: src/content/second-brain/Prepare Raspberry Pi SD Card with Ubuntu & Cl
 
 I wanted to setup a new Raspberry Pi machine with pre-configured Wifi & SSH. I also wanted to install Docker. I found a way to do this using [cloud-init](https://cloud-init.io) which is pre-installed on Ubuntu.
 
-To do this, I used the Ubuntu for Raspberry Pi image and cloud-init. I also used the flash tool to flash the image to the Micro SD card.
+To do this, I used the [Ubuntu for Raspberry Pi](https://ubuntu.com/download/raspberry-pi) image and cloud-init. I also used the flash tool to flash the image to the Micro SD card.
 
 To configure cloud-init, I created a `user-data` file with the following content:
 
