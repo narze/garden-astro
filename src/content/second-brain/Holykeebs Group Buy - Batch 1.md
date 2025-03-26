@@ -7,9 +7,11 @@ slug: holykeebs-group-buy-batch-1
 filepath: src/content/second-brain/Holykeebs Group Buy - Batch 1.md
 ---
 
-Confirm + โอนมัดจำ ก่อนตัดรอบ group buy ภายในวันเสาร์ที่ 29 มี.ค. เวลา 18:00น.
+# Notes
 
-Source ของทั้งหมดจาก Holykeebs, ไม่คิดค่า Build
+* Source ของทั้งหมดจาก Holykeebs, ไม่คิดค่า Build
+* ตัดรอบ Group buy วันพฤหัสที่ 27 มี.ค. เวลา 18:00น. หรือเมื่อ group เต็ม
+* Confirm + โอนมัดจำ ภายในวันเสาร์ที่ 29 มี.ค. เวลา 18:00น.
 
 # Instructions
 
