@@ -8,6 +8,7 @@ filepath: src/content/second-brain/Holykeebs Group Buy - Batch 1.md
 ---
 
 Source ของทั้งหมดจาก Holykeebs, ไม่คิดค่า Build
+Confirm ก่อนตัดรอบ group buy ภายในวันศุกร์ที่ 28 มี.ค. เวลา 18:00น.
 
 # Instructions
 
