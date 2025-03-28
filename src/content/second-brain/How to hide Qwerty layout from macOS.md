@@ -18,7 +18,7 @@ If you add non standard English keyboard layout to macOS, the default one `ABC` 
 To remove it you have to edit the plist file, first select your non standard English layout. Then edit the plist file using these commands in terminal.
 
 ```shell
-# Convert .plist file so that it can be edited in text editors rather than XCode
+# Convert .plist fincle so that it can be edited in text editors rather than XCode
 plutil -convert xml1 ~/Library/Preferences/com.apple.HIToolbox.plist
 
 # Use your favorite text editor such as vim or vscode
