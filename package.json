@@ -31,7 +31,6 @@
     "@giscus/svelte": "^3.1.0",
     "@playwright/test": "^1.55.0",
     "@tailwindcss/typography": "^0.5.16",
-    "@types/tar": "^6.1.13",
     "@typescript-eslint/parser": "^8.43.0",
     "chokidar": "^4.0.3",
     "eslint": "^9.35.0",
