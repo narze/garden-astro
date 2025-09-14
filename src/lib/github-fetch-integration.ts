@@ -12,30 +12,35 @@ import { stripHashFromTags } from "./strip-hash-from-tags"
 import { Octokit } from "octokit"
 import { PassThrough, Readable } from "node:stream"
 import { pipeline } from "node:stream/promises"
-import { Parse, type ReadEntry } from "tar"
+import { Parser, type ReadEntry } from "tar"
 
 type TarFilter = (path: string, entry: ReadEntry) => boolean
 
 // https://github.com/dtinth/notes-infrastructure/blob/main/src/workers/publish.ts
 async function* readTar(input: Readable, filter: TarFilter) {
   const entryStream = new PassThrough({ objectMode: true })
-  const pipelinePromise = pipeline(
-    input,
-    new Parse({
-      filter,
-      onentry: async (entry) => {
-        entryStream.write(entry)
-      },
-    })
-  ).then(() => {
+  const parser = new Parser()
+
+  parser.on("entry", async (entry: ReadEntry) => {
+    if (filter(entry.path, entry)) {
+      entryStream.write(entry)
+    }
+  })
+
+  parser.on("end", () => {
     entryStream.end()
   })
+
+  const pipelinePromise = pipeline(input, parser as any).then(() => {
+    // Parser finished
+  })
+
   for await (const entry of entryStream) {
     const buffers: Buffer[] = []
     for await (const data of entry) {
       buffers.push(data)
     }
-    const content = Buffer.concat(buffers)
+    const content = Buffer.concat(buffers as any)
     yield { entry, content }
   }
   await pipelinePromise
@@ -199,7 +204,7 @@ export async function fetchSecondBrain(local: boolean = false) {
         await fs.promises.mkdir(destinationDir, { recursive: true })
       }
 
-      await fs.promises.writeFile(destinationPath, content)
+      await fs.promises.writeFile(destinationPath, content as any)
     }
 
     data = Buffer.from("") // Free memory
