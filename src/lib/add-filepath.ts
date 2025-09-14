@@ -10,8 +10,11 @@ export const addFilepath = (filePath: string) => {
     .use(remarkFrontmatter)
     .use(() => (tree, file) => {
       visit(tree, "root", (node) => {
-        visit(node, "yaml", (yamlNode) => {
-          yamlNode.value += `\nfilepath: ${filePath}`
+        visit(node, "yaml", (yamlNode: any) => {
+          // Only add if not already exists
+          if (!yamlNode.value.includes("filepath:")) {
+            yamlNode.value += `\nfilepath: ${filePath}`
+          }
         })
       })
     })

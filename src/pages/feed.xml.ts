@@ -6,7 +6,9 @@ import type { APIRoute } from "astro"
 export const GET: APIRoute = async (context) => {
   const entries = (
     await getCollection("second-brain", ({ data }) => {
-      return data.draft !== true && data.no_feed !== true
+      return (
+        data.draft !== true && data.no_feed !== true && data.unlisted !== true
+      )
     })
   ).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
 

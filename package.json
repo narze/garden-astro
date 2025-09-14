@@ -11,12 +11,13 @@
     "start": "astro dev",
     "fetch": "tsx fetch.ts",
     "fetch:local": "tsx fetch.ts --local",
-    "build": "run-s -c \"astro build\" build:post",
+    "build": "run-s -c \"fetch --cleanup\" \"astro build\" build:post",
     "build:post": "pagefind --site dist --output-subdir pagefind",
     "preview": "astro preview",
     "astro": "astro",
     "format": "prettier --write --plugin-search-dir=. .",
-    "lint": "eslint 'src/**/*.{ts,svelte,astro}'"
+    "lint": "eslint 'src/**/*.{ts,svelte,astro}'",
+    "prepare": "husky"
   },
   "dependencies": {
     "@astrojs/mdx": "^4.3.5",
@@ -38,6 +39,8 @@
     "eslint-plugin-svelte": "^3.12.3",
     "glob": "^11.0.3",
     "gray-matter": "^4.0.3",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.6",
     "npm-run-all": "^4.1.5",
     "octokit": "^5.0.3",
     "pagefind": "^1.4.0",
@@ -49,5 +52,10 @@
     "tar": "^7.4.3",
     "tsx": "^4.20.5",
     "unist-util-visit": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{md,mdx}": [
+      "node scripts/check-unlisted.js"
+    ]
   }
 }
