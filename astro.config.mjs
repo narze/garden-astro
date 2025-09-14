@@ -3,7 +3,6 @@ import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 // import githubFetchIntegration from "./src/lib/github-fetch-integration"
 import svelte from "@astrojs/svelte"
-// import tailwind from "@astrojs/tailwind"
 
 import tailwindcss from "@tailwindcss/vite"
 
@@ -33,7 +32,6 @@ export default defineConfig({
     sitemap(),
     // githubFetchIntegration(),
     svelte(),
-    // tailwind(),
   ],
 
   markdown: {

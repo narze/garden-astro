@@ -11,7 +11,7 @@
     "start": "astro dev",
     "fetch": "tsx fetch.ts",
     "fetch:local": "tsx fetch.ts --local",
-    "build": "run-s -c \"astro build\" build:post",
+    "build": "run-s -c \"fetch --cleanup\" \"astro build\" build:post",
     "build:post": "pagefind --site dist --output-subdir pagefind",
     "preview": "astro preview",
     "astro": "astro",

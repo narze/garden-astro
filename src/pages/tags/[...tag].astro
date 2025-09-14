@@ -1,5 +1,6 @@
 ---
-import { CollectionEntry, getCollection } from "astro:content"
+import { getCollection } from "astro:content"
+import type { CollectionEntry } from "astro:content"
 import { DEV } from "../../consts"
 import FormattedDate from "../../components/FormattedDate.astro"
 import Layout from "../../layouts/Layout.astro"
@@ -8,7 +9,7 @@ export async function getStaticPaths() {
   const secondBrainPosts = await getCollection("second-brain", ({ data }) => {
     if (!data.tags?.[0]) return false
 
-    return DEV ? true : data.draft !== true
+    return DEV ? true : data.draft !== true && data.unlisted !== true
   })
 
   const uniqueTags = [
