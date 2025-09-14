@@ -3,7 +3,9 @@ import mdx from "@astrojs/mdx"
 import sitemap from "@astrojs/sitemap"
 // import githubFetchIntegration from "./src/lib/github-fetch-integration"
 import svelte from "@astrojs/svelte"
-import tailwind from "@astrojs/tailwind"
+// import tailwind from "@astrojs/tailwind"
+
+import tailwindcss from "@tailwindcss/vite"
 
 function prependImageSrcPlugin() {
   return (tree) => {
@@ -25,14 +27,20 @@ function prependImageSrcPlugin() {
 // https://astro.build/config
 export default defineConfig({
   site: "https://garden.narze.live",
+
   integrations: [
     mdx(),
     sitemap(),
     // githubFetchIntegration(),
     svelte(),
-    tailwind(),
+    // tailwind(),
   ],
+
   markdown: {
     remarkPlugins: [prependImageSrcPlugin],
+  },
+
+  vite: {
+    plugins: [tailwindcss()],
   },
 })
