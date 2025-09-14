@@ -46,6 +46,8 @@ jobs:
         run: pnpm install
 
       - name: Fetch Second Brain
+        env:
+          PAT: ${{ secrets.PAT }}
         run: pnpm run fetch
 
       - name: Commit and push changes
