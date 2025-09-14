@@ -6,10 +6,15 @@ A Digital Garden generated with Astro. Allows editing on Obsidian and/or VSCode,
 
 ```mermaid
 graph TD
-    A[Obsidian] -- "1️⃣ Sync notes" --> B[narze/second-brain]
-    B -- "2️⃣ Trigger Github Actions" --> C[narze/garden-astro]
-    C -- "3️⃣ Fetch & filter notes" --> B
-    C -- "4️⃣ Commit & Deploy" --> D[Vercel]
+    A["Obsidian (or any markdown notes)"] -- "1️⃣ Sync notes via Git" --> B["narze/second-brain (private)"]
+    B -- "2️⃣ Trigger Github Actions" --> D[narze/garden-astro]
+    D -. "3️⃣ Fetch public notes & commit" .-> B
+    D -- "️4️⃣ (optional) Mirror public notes" --> L["narze/second-brain-public (mirror)"]
+    D -- "5️⃣ Trigger Deployment" --> E["Vercel"]
+    E -. "6️⃣ Fetch unlisted notes" .-> B
+    E -- "7️⃣ Deploy" --> X[Astro Site]
+
+
 ```
 
 - Write notes in Obsidian app
