@@ -141,7 +141,7 @@ export async function fetchSecondBrain(local: boolean = false) {
     console.log("Fetching files from narze/second-brain...")
 
     // Create a personal access token at https://github.com/settings/tokens/new?scopes=repo
-    const octokit = new Octokit({})
+    const octokit = new Octokit({ auth: process.env["PAT"] })
     const owner = "narze"
     const repo = "second-brain"
 
