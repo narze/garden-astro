@@ -14,7 +14,7 @@ mv temp_git/.git .
 rmdir temp_git
 ```
 
-If some files are still missing, like `.gitignore` you can restore them with `git checkout HEAD`
+If some files are still missing, like `.gitignore`, you can restore them with `git checkout HEAD`
 
 ```shell
 git checkout HEAD -- .gitignore
