@@ -1,5 +1,7 @@
 # Garden Astro
 
+![Vercel Deploy](https://deploy-badge.vercel.app/vercel/garden-astro)
+
 A Digital Garden generated with Astro. Allows editing on Obsidian and/or VSCode, sync with Git.
 
 ## Workflow
