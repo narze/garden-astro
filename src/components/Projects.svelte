@@ -13,7 +13,7 @@
   }
 
   const imageUrl = (url: string) =>
-    `https://pptr.io/api/screenshot?width=400&height=300&deviceScaleFactor=1&dark=1&url=${url}`
+    `https://pptrio.vercel.app/api/screenshot?width=400&height=300&deviceScaleFactor=1&dark=1&url=${url}`
 
   $: filteredProjects = projects.filter((project) => {
     if (!selectedTag?.length) {
