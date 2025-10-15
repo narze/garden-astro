@@ -11,8 +11,11 @@ unlisted: false
 filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
 ---
 
+* Sign Up Bambu Lab's MakerWorld
+* Download [Bambu Studio](https://bambulab.com/en/download/studio)
 * Assembly video - https://www.youtube.com/watch?v=hrA6nXvWOY0
   * The video is quite old, newer A1s have some slight changes and don't include filament color swatches anymore :(
+  * After assembly, run full calibration once
 * Printable mods (Sorted by usefulness)
   * Poop bin - https://makerworld.com/en/models/156253-poop-bucket-for-poop-deflector-bambulab-a1#profileId-171141
   * Poop deflector - https://makerworld.com/en/models/123164-poop-deflector-a1-a1-mini?from=search#profileId-132720
