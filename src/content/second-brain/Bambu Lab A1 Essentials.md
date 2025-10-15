@@ -11,7 +11,7 @@ unlisted: false
 filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
 ---
 
-* Sign Up Bambu Lab's MakerWorld
+* Sign Up Bambu Lab's [MakerWorld](https://makerworld.com)
 * Download [Bambu Studio](https://bambulab.com/en/download/studio)
 * Assembly video - https://www.youtube.com/watch?v=hrA6nXvWOY0
   * The video is quite old, newer A1s have some slight changes and don't include filament color swatches anymore :(
@@ -37,7 +37,8 @@ filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
     * Super Lock #6042 rice box - Can store 4 spools ![](0-Inbox/attachments/Bambulab%20A1%20Essentials.png)
     * Silica Gel Desiccant - Use orange colored one and print a container e.g. https://makerworld.com/en/models/394541-container-silica-gel?from=search#profileId-306240
 * Filament
-  * PLA - Esun PLA / PLA+ (Printer has built in profile)
+  * PLA - Esun (Printer has built in profile)
+    * PLA+ is stronger, but a bit more expensive
   * PETG - R3D (Use Generic PETG profile)
 * Nice to haves
   * Ultimate Filament Spool Enclosure Type 02 (~1kg of filament) https://makerworld.com/en/models/1171679-ultimate-filament-spool-enclosure-type-02#profileId-1180009
