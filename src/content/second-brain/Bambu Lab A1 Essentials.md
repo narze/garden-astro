@@ -30,8 +30,10 @@ filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
   * Extruder cable guide (black wire) - https://makerworld.com/en/models/106680-a1-cable-guide-and-a1-mini#profileId-113864
 * Buyable mods & maintenance
   * WD-40 Lubricant spray (for Y-axis)
+  * Isopropyl Alcohol 99% (IPA), for cleaning build plates
   * Biqu Cryogrip Pro
     * Frostbite (coarse) - Use `Cool Plate Supertack` profile
+      * Cannot use IPA for this one, only use dish soap
     * Glacier (fine) - Use `Textured PEI Plate` profile
   * Used filament storage
     * Super Lock #6042 rice box - Can store 4 spools ![](0-Inbox/attachments/Bambulab%20A1%20Essentials.png)
