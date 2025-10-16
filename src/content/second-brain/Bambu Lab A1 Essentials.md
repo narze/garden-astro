@@ -11,8 +11,10 @@ unlisted: false
 filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
 ---
 
+Don't have one? -> https://s.shopee.co.th/1BDlKPKluD (affiliated)
+
 * Sign Up Bambu Lab's [MakerWorld](https://makerworld.com)
-* Download [Bambu Studio](https://bambulab.com/en/download/studio)
+* Download [Bambu Studio](https://bambulab.com/en/download/studio) for PC, Bambu Handy for mobile
 * Assembly video - https://www.youtube.com/watch?v=hrA6nXvWOY0
   * The video is quite old, newer A1s have some slight changes and don't include filament color swatches anymore :(
   * After assembly, run full calibration once
@@ -36,7 +38,7 @@ filepath: src/content/second-brain/Bambu Lab A1 Essentials.md
       * Cannot use IPA for this one, only use dish soap
     * Glacier (fine) - Use `Textured PEI Plate` profile
   * Used filament storage
-    * Super Lock #6042 rice box - Can store 4 spools ![](0-Inbox/attachments/Bambulab%20A1%20Essentials.png)
+    * Super Lock #6042 rice box - Can store 4 spools ![](attachments/Bambulab%20A1%20Essentials.png)
     * Silica Gel Desiccant - Use orange colored one and print a container e.g. https://makerworld.com/en/models/394541-container-silica-gel?from=search#profileId-306240
 * Filament
   * PLA - Esun (Printer has built in profile)
