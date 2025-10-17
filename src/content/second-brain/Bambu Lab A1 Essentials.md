@@ -47,3 +47,4 @@ Don't have one? -> https://s.shopee.co.th/1BDlKPKluD (affiliated)
 * Nice to haves
   * Ultimate Filament Spool Enclosure Type 02 (~1kg of filament) https://makerworld.com/en/models/1171679-ultimate-filament-spool-enclosure-type-02#profileId-1180009
   * Small (9L) electric oven - Recharge silica gel @ 100C for 1-2hr ![](0-Inbox/attachments/Bambulab%20A1%20Essentials-2.png)
+  * AMS Lite Hub with 5 holes (compatible with external spool without interchanging PTFE)
